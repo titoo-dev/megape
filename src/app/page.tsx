@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, Play, Users, Book, Headphones, Mail, Heart, Star, Zap, Globe, Shield, Sparkles, ArrowRight, Check } from 'lucide-react';
+import { ChevronDown, Menu, X, Play, Users, Book, Headphones, Mail, Heart, Star, Zap, Globe, Shield, Sparkles, ArrowRight, Check, AudioLines, Gamepad2, Twitter, Facebook, Instagram } from 'lucide-react';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,7 +73,7 @@ export default function Home() {
         <div className="relative container mx-auto max-w-7xl px-4 pt-32 pb-20">
           <div className="text-center max-w-5xl mx-auto">
             <div className="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full mb-8">
-              <Sparkles className="w-4 h-4 text-red-400 mr-2" />
+              <Heart className="w-4 h-4 text-red-400 mr-2" />
               <span className="text-red-400 text-sm font-medium">Unis pour impacter</span>
             </div>
 
@@ -84,8 +84,13 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
               "Et si, ensemble, nous devenions la preuve vivante que l'unité chrétienne change le monde ?"
+            </p>
+
+            <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+              <strong>M</strong> pour Mission. <strong>Agapè</strong> pour l'amour inconditionnel de Dieu. 
+              Nous créons des actions, des produits et des événements qui fortifient notre identité en Christ.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -105,34 +110,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* En Bref Section */}
+      {/* Vision & Univers graphique Section */}
       {/* <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
-          <h2 className="text-4xl font-bold text-white text-center mb-16">En bref</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Vision & Univers graphique</h2>
+            <p className="text-xl text-gray-300">Une mission claire. Un langage commun. Une famille unie.</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-red-900/30 to-red-800/20 p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-all">
+            <div className="bg-gradient-to-br from-red-900/30 to-red-800/20 p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-colors">
               <Heart className="w-12 h-12 text-red-400 mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">Mission d'amour</h3>
-              <p className="text-gray-400">M pour Mission. Agapè pour l'amour inconditionnel de Dieu.</p>
+              <p className="text-gray-400">M pour Mission. Agapè pour l'amour inconditionnel de Dieu. MAGAPE n'est pas une simple marque : c'est un symbole que nous portons ensemble.</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 p-8 rounded-2xl border border-orange-500/20 hover:border-orange-500/40 transition-all">
-              <Users className="w-12 h-12 text-orange-400 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">Une famille unie</h3>
-              <p className="text-gray-400">Rassembler les chrétiens francophones autour d'une vision commune.</p>
+            <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 p-8 rounded-2xl border border-orange-500/20 hover:border-orange-500/40 transition-colors">
+              <Sparkles className="w-12 h-12 text-orange-400 mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-2">Univers graphique</h3>
+              <p className="text-gray-400">Notre univers graphique est le reflet de notre foi et de notre mission. Chaque couleur, chaque motif raconte notre histoire collective : passion, foi, action.</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+            <div className="bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/40 transition-colors">
               <Globe className="w-12 h-12 text-yellow-400 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">Impact mondial</h3>
-              <p className="text-gray-400">Créer des ponts d'unité dans toute la francophonie.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Notre promesse</h3>
+              <p className="text-gray-400">Rassembler, inspirer, équiper. Toujours ensemble. Construire des ponts d'unité dans toute la francophonie.</p>
             </div>
           </div>
         </div>
       </section> */}
 
-      {/* Maillots Section */}
+      {/* Maillots MAGAPE Section */}
       {/* <section id="products" className="py-20 bg-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -146,8 +154,14 @@ export default function Home() {
                 Les maillots MAGAPE
               </h2>
 
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-gray-300 mb-4">
                 Portez vos couleurs. Faites partie de l'équipe.
+              </p>
+
+              <p className="text-gray-400 mb-8">
+                Le sport, et surtout le football, rassemble des millions de personnes. 
+                Quand on porte le même maillot, on joue pour la même cause. Le Maillot MAGAPE est bien plus qu'un vêtement : 
+                <strong className="text-gray-300"> c'est une bannière d'unité pour dire au monde : "Nous sommes une seule famille en Christ".</strong>
               </p>
 
               <div className="space-y-4 mb-8">
@@ -177,7 +191,7 @@ export default function Home() {
               </div>
 
               <button className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full font-semibold hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-600 transition-colors">
-                Commander un maillot <ArrowRight className="inline ml-2" />
+                Rejoignez l'équipe MAGAPE <ArrowRight className="inline ml-2" />
               </button>
             </div>
 
@@ -186,7 +200,7 @@ export default function Home() {
               <div className="relative bg-gradient-to-br from-red-800/30 to-orange-800/30 rounded-3xl p-12 border border-red-400/20">
                 <div className="aspect-square bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center">
                   <div className="text-center text-white">
-                    <Users className="w-32 h-32 mx-auto mb-4 opacity-50" />
+                    <Users className="w-32 h-32 mx-auto mb-4 opacity-80" />
                     <p className="text-2xl font-bold">MAGAPE</p>
                     <p className="text-lg">Unis pour impacter</p>
                   </div>
@@ -204,22 +218,26 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Émissions & Podcasts
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-300 mb-4">
               Des voix qui rassemblent. Des histoires qui inspirent.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto">
+              Nous créons des contenus audiovisuels qui renforcent notre foi et nous rapprochent les uns des autres. 
+              Dans nos émissions et podcasts : on apprend, on rit, on réfléchit, on partage… et on construit une culture commune pour les chrétiens francophones.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/20 hover:border-purple-500/40 transition-all">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/20 hover:border-purple-500/40 transition-colors">
               <div className="p-8">
-                <Headphones className="w-12 h-12 text-purple-400 mb-4" />
+                <AudioLines className="w-12 h-12 text-purple-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">Témoignages et enseignements</h3>
                 <p className="text-gray-400">Pour nourrir la foi</p>
               </div>
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform"></div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/20 hover:border-blue-500/40 transition-all">
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/20 hover:border-blue-500/40 transition-colors">
               <div className="p-8">
                 <Play className="w-12 h-12 text-blue-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">Débats et divertissements</h3>
@@ -228,7 +246,7 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform"></div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-900/30 to-green-800/20 border border-green-500/20 hover:border-green-500/40 transition-all">
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-900/30 to-green-800/20 border border-green-500/20 hover:border-green-500/40 transition-colors">
               <div className="p-8">
                 <Globe className="w-12 h-12 text-green-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">Une francophonie connectée</h3>
@@ -236,6 +254,12 @@ export default function Home() {
               </div>
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform"></div>
             </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-lg text-gray-300 italic">
+              "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
+            </p>
           </div>
         </div>
       </section> */}
@@ -251,7 +275,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-white mb-4">Cahier ECODIM</h3>
                   <div className="space-y-2 text-gray-300">
                     <p>📚 Histoires inspirantes</p>
-                    <p>🎮 Jeux et activités ludiques</p>
+                    <p><Gamepad2 className="inline w-4 h-4 mr-1" /> Jeux et activités ludiques</p>
                     <p>❤️ Valeurs bibliques solides</p>
                   </div>
                 </div>
@@ -269,16 +293,16 @@ export default function Home() {
               </h2>
 
               <p className="text-xl text-gray-300 mb-4">
-                Former la nouvelle génération... en s'amusant.
+                Former la nouvelle génération… en s'amusant.
               </p>
 
               <p className="text-gray-400 mb-8">
                 Le Cahier ECODIM est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge.
-                Comme un cahier de vacances, mais centré sur la Bible, il mêle apprentissage et jeux pour que
-                les enfants grandissent dans la foi avec joie.
+                Comme un cahier de vacances, <strong className="text-gray-300">mais centré sur la Bible</strong>, il mêle apprentissage et jeux pour que
+                les enfants grandissent dans la foi <strong className="text-gray-300">avec joie</strong>.
               </p>
 
-              <p className="text-gray-300 mb-8">
+              <p className="text-gray-300 mb-8 font-semibold">
                 Un cadeau parfait pour les familles, les écoles du dimanche et les groupes de jeunes.
               </p>
 
@@ -304,22 +328,21 @@ export default function Home() {
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                   "Unis pour impacter"
                 </h2>
-                <p className="text-xl text-gray-300">
+                <p className="text-xl text-gray-300 mb-4">
                   Le guide pour bâtir l'unité chrétienne
+                </p>
+                <p className="text-gray-400">
+                  Recevez gratuitement notre ebook exclusif : Des clés bibliques et pratiques pour renforcer vos relations, votre communauté et votre foi.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-white">Recevez gratuitement :</h3>
+                  <h3 className="text-xl font-semibold text-white">En rejoignant notre newsletter, vous recevrez aussi :</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
-                      <span className="text-gray-300">Notre ebook exclusif avec des clés bibliques et pratiques</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
-                      <span className="text-gray-300">Des ressources inspirantes chaque semaine</span>
+                      <span className="text-gray-300">Des ressources inspirantes</span>
                     </li>
                     <li className="flex items-start">
                       <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
@@ -349,6 +372,12 @@ export default function Home() {
                   Je reçois mon ebook et je rejoins le mouvement
                 </button>
               </div>
+
+              <div className="text-center mt-8">
+                <p className="text-gray-300 font-semibold">
+                  Téléchargez votre ebook et rejoignez la famille MAGAPE aujourd'hui.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -357,6 +386,10 @@ export default function Home() {
       {/* Stats Section */}
       {/* <section className="py-20 bg-gray-900">
         <div className="container mx-auto max-w-7xl px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Notre impact ensemble</h2>
+            <p className="text-gray-400">Des chiffres qui témoignent de la force de l'unité</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-5xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent mb-2">
@@ -388,7 +421,10 @@ export default function Home() {
               <h3 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent mb-4">
                 MAGAPE
               </h3>
-              <p className="text-gray-400">Unis pour impacter</p>
+              <p className="text-gray-400 mb-4">Unis pour impacter</p>
+              <p className="text-gray-500 text-sm">
+                "Et si, ensemble, nous devenions la preuve vivante que l'unité chrétienne change le monde ?"
+              </p>
             </div>
 
             <div>
@@ -402,26 +438,26 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-white font-semibold mb-4">Produits</h4>
+              <h4 className="text-white font-semibold mb-4">Nos Produits</h4>
               <ul className="space-y-2">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Maillots MAGAPE</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cahier ECODIM</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Ebook gratuit</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Podcasts</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Émissions & Podcasts</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-semibold mb-4">Suivez-nous</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                  <span className="text-white text-sm">f</span>
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                  <Facebook className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                  <span className="text-white text-sm">X</span>
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                  <Twitter className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                  <span className="text-white text-sm">in</span>
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                  <Instagram className="w-5 h-5 text-white" />
                 </a>
               </div>
             </div>
