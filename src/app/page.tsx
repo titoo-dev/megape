@@ -430,13 +430,10 @@ export default function Home() {
                 <Image
                   src="/agape-removebg-preview.png"
                   alt="MAGAPE Logo"
-                  width={40}
-                  height={40}
+                  width={80}
+                  height={48}
                   className="rounded-lg"
                 />
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-[#fe1556] to-[#32a3ff] bg-clip-text text-transparent">
-                  MAGAPE
-                </h3>
               </div>
               <p className="text-gray-400 mb-4">Unis pour impacter</p>
               <p className="text-gray-500 text-sm">
