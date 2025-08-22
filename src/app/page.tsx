@@ -106,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* En Bref Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <h2 className="text-4xl font-bold text-white text-center mb-16">En bref</h2>
 
@@ -130,10 +130,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Maillots Section */}
-      <section id="products" className="py-20 bg-gray-800">
+      {/* <section id="products" className="py-20 bg-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -195,10 +195,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Émissions & Podcasts Section */}
-      <section id="media" className="py-20 bg-gray-900">
+      {/* <section id="media" className="py-20 bg-gray-900">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -238,10 +238,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Cahier ECODIM Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -288,10 +288,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Ebook & Newsletter Section */}
-      <section id="contact" className="py-20 bg-gray-800">
+      {/* <section id="contact" className="py-20 bg-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gradient-to-br from-red-800/30 to-orange-800/30 rounded-3xl p-12 border border-red-400/20">
@@ -352,10 +352,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-900">
+      {/* <section className="py-20 bg-gray-900">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -378,10 +378,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
-      <footer className="py-12 bg-gray-800 border-t border-gray-700">
+      {/* <footer className="py-12 bg-gray-800 border-t border-gray-700">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -435,7 +435,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
