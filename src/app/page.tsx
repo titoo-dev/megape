@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronDown, Menu, X, Play, Users, Book, Headphones, Mail, Heart, Star, Zap, Globe, Shield, Sparkles, ArrowRight, Check, AudioLines, Gamepad2, Twitter, Facebook, Instagram } from 'lucide-react';
 
 export default function Home() {
@@ -18,27 +19,33 @@ export default function Home() {
   return (
     <>
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-800/95 backdrop-blur-lg' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-lg border-b border-[#fe1556]/20' : 'bg-transparent'}`}>
         <div className="container mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-8">
-              <div className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                MAGAPE
+              <div className="flex items-center space-x-3">
+                <Image
+                  src="/agape-removebg-preview.png"
+                  alt="MAGAPE Logo"
+                  width={100}
+                  height={48}
+                  className="rounded-lg"
+                />
               </div>
               <div className="hidden md:flex items-center space-x-6">
-                <a href="#mission" className="text-gray-300 hover:text-white transition-colors">Mission</a>
-                <a href="#products" className="text-gray-300 hover:text-white transition-colors">Produits</a>
-                <a href="#media" className="text-gray-300 hover:text-white transition-colors">Médias</a>
-                <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+                <a href="#mission" className="text-gray-300 hover:text-[#fe1556] transition-colors">Mission</a>
+                <a href="#products" className="text-gray-300 hover:text-[#32a3ff] transition-colors">Produits</a>
+                <a href="#media" className="text-gray-300 hover:text-[#fe1556] transition-colors">Médias</a>
+                <a href="#contact" className="text-gray-300 hover:text-[#32a3ff] transition-colors">Contact</a>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="hidden md:block px-6 py-2.5 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-red-500/25 transition-colors">
+              <button className="hidden md:block px-6 py-2.5 border-2 border-[#fe1556] text-[#fe1556] rounded-full font-medium transition-all duration-250 hover:bg-[#fe1556] hover:text-white hover:cursor-pointer">
                 Rejoindre le mouvement
               </button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden text-white p-2"
+                className="md:hidden text-white p-2 hover:text-[#fe1556] transition-colors"
               >
                 {isMenuOpen ? <X /> : <Menu />}
               </button>
@@ -49,13 +56,13 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-gray-800/95 backdrop-blur-lg md:hidden">
+        <div className="fixed inset-0 z-40 bg-gray-900/95 backdrop-blur-lg md:hidden">
           <div className="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#mission" className="text-2xl text-white">Mission</a>
-            <a href="#products" className="text-2xl text-white">Produits</a>
-            <a href="#media" className="text-2xl text-white">Médias</a>
-            <a href="#contact" className="text-2xl text-white">Contact</a>
-            <button className="px-8 py-3 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full font-medium">
+            <a href="#mission" className="text-2xl text-white hover:text-[#fe1556] transition-colors">Mission</a>
+            <a href="#products" className="text-2xl text-white hover:text-[#32a3ff] transition-colors">Produits</a>
+            <a href="#media" className="text-2xl text-white hover:text-[#fe1556] transition-colors">Médias</a>
+            <a href="#contact" className="text-2xl text-white hover:text-[#32a3ff] transition-colors">Contact</a>
+            <button className="px-8 py-3 bg-gradient-to-r from-[#fe1556] to-[#32a3ff] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#fe1556]/25 transition-all duration-300 hover:scale-105">
               Rejoindre le mouvement
             </button>
           </div>
@@ -64,22 +71,23 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-900 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-800/20 via-gray-900 to-orange-800/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#fe1556]/20 via-gray-900 to-[#32a3ff]/20"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-red-400/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#fe1556]/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#32a3ff]/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative container mx-auto max-w-7xl px-4 pt-32 pb-20">
           <div className="text-center max-w-5xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full mb-8">
-              <Heart className="w-4 h-4 text-red-400 mr-2" />
-              <span className="text-red-400 text-sm font-medium">Unis pour impacter</span>
+            <div className="inline-flex items-center px-4 py-2 bg-[#fe1556]/10 border border-[#fe1556]/30 rounded-full mb-8 backdrop-blur-sm">
+              <Heart className="w-4 h-4 text-[#fe1556] mr-2" />
+              <span className="text-[#fe1556] text-sm font-medium">Unis pour impacter</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               MAGAPE
-              <span className="block text-3xl md:text-5xl mt-4 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="block text-3xl md:text-5xl mt-4 bg-gradient-to-r from-[#fe1556] to-[#32a3ff] bg-clip-text text-transparent">
                 La force de l'unité chrétienne
               </span>
             </h1>
@@ -89,21 +97,21 @@ export default function Home() {
             </p>
 
             <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-              <strong>M</strong> pour Mission. <strong>Agapè</strong> pour l'amour inconditionnel de Dieu. 
+              <strong className="text-[#fe1556]">M</strong> pour Mission. <strong className="text-[#32a3ff]">Agapè</strong> pour l'amour inconditionnel de Dieu.
               Nous créons des actions, des produits et des événements qui fortifient notre identité en Christ.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <button className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full font-semibold text-lg hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-600 transition-colors">
+              <button className="px-8 py-4 bg-[#fe1556] text-white rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-[#fe1556]/25 transition-all duration-300 hover:cursor-pointer">
                 Recevoir l'ebook gratuit
               </button>
-              <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg border border-white/20 hover:bg-white/20 transition-colors">
+              <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg border border-white/20 hover:bg-[#32a3ff]/20 hover:border-[#32a3ff]/40 transition-all duration-300">
                 Découvrir notre mission
               </button>
             </div>
 
             <div className="flex items-center justify-center space-x-2 text-gray-400">
-              <ChevronDown className="animate-bounce" />
+              <ChevronDown className="animate-bounce text-[#32a3ff]" />
               <span>Découvrez notre vision</span>
             </div>
           </div>
@@ -111,34 +119,34 @@ export default function Home() {
       </section>
 
       {/* Vision & Univers graphique Section */}
-      {/* <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+      <section id="mission" className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Vision & Univers graphique</h2>
             <p className="text-xl text-gray-300">Une mission claire. Un langage commun. Une famille unie.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-red-900/30 to-red-800/20 p-8 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-colors">
-              <Heart className="w-12 h-12 text-red-400 mb-4" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="group bg-gradient-to-br from-[#fe1556]/20 to-[#fe1556]/10 p-8 rounded-2xl border border-[#fe1556]/20 hover:border-[#fe1556]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/10">
+              <Heart className="w-12 h-12 text-[#fe1556] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-2">Mission d'amour</h3>
               <p className="text-gray-400">M pour Mission. Agapè pour l'amour inconditionnel de Dieu. MAGAPE n'est pas une simple marque : c'est un symbole que nous portons ensemble.</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 p-8 rounded-2xl border border-orange-500/20 hover:border-orange-500/40 transition-colors">
-              <Sparkles className="w-12 h-12 text-orange-400 mb-4" />
+            <div className="group bg-gradient-to-br from-[#32a3ff]/20 to-[#32a3ff]/10 p-8 rounded-2xl border border-[#32a3ff]/20 hover:border-[#32a3ff]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#32a3ff]/10">
+              <Sparkles className="w-12 h-12 text-[#32a3ff] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-2">Univers graphique</h3>
               <p className="text-gray-400">Notre univers graphique est le reflet de notre foi et de notre mission. Chaque couleur, chaque motif raconte notre histoire collective : passion, foi, action.</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/40 transition-colors">
-              <Globe className="w-12 h-12 text-yellow-400 mb-4" />
+            <div className="group bg-gray-800/50 p-8 rounded-2xl border border-white/10 hover:border-[#fe1556]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#32a3ff]/10">
+              <Globe className="w-12 h-12 text-[#32a3ff] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-2">Notre promesse</h3>
               <p className="text-gray-400">Rassembler, inspirer, équiper. Toujours ensemble. Construire des ponts d'unité dans toute la francophonie.</p>
             </div>
-          </div>
+            </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Maillots MAGAPE Section */}
       {/* <section id="products" className="py-20 bg-gray-800">
@@ -414,13 +422,22 @@ export default function Home() {
       </section> */}
 
       {/* Footer */}
-      {/* <footer className="py-12 bg-gray-800 border-t border-gray-700">
+      <footer className="py-12 bg-gray-800 border-t border-[#fe1556]/20">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent mb-4">
-                MAGAPE
-              </h3>
+              <div className="flex items-center space-x-3 mb-4">
+                <Image
+                  src="/agape-removebg-preview.png"
+                  alt="MAGAPE Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-lg"
+                />
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-[#fe1556] to-[#32a3ff] bg-clip-text text-transparent">
+                  MAGAPE
+                </h3>
+              </div>
               <p className="text-gray-400 mb-4">Unis pour impacter</p>
               <p className="text-gray-500 text-sm">
                 "Et si, ensemble, nous devenions la preuve vivante que l'unité chrétienne change le monde ?"
@@ -430,33 +447,33 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-4">Navigation</h4>
               <ul className="space-y-2">
-                <li><a href="#mission" className="text-gray-400 hover:text-white transition-colors">Mission</a></li>
-                <li><a href="#products" className="text-gray-400 hover:text-white transition-colors">Produits</a></li>
-                <li><a href="#media" className="text-gray-400 hover:text-white transition-colors">Médias</a></li>
-                <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#mission" className="text-gray-400 hover:text-[#fe1556] transition-colors">Mission</a></li>
+                <li><a href="#products" className="text-gray-400 hover:text-[#32a3ff] transition-colors">Produits</a></li>
+                <li><a href="#media" className="text-gray-400 hover:text-[#fe1556] transition-colors">Médias</a></li>
+                <li><a href="#contact" className="text-gray-400 hover:text-[#32a3ff] transition-colors">Contact</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-semibold mb-4">Nos Produits</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Maillots MAGAPE</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cahier ECODIM</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Ebook gratuit</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Émissions & Podcasts</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#fe1556] transition-colors">Maillots MAGAPE</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#32a3ff] transition-colors">Cahier ECODIM</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#fe1556] transition-colors">Ebook gratuit</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#32a3ff] transition-colors">Émissions & Podcasts</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-semibold mb-4">Suivez-nous</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-[#fe1556] transition-colors group">
                   <Facebook className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-[#32a3ff] transition-colors group">
                   <Twitter className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-[#fe1556] transition-colors group">
                   <Instagram className="w-5 h-5 text-white" />
                 </a>
               </div>
@@ -466,12 +483,12 @@ export default function Home() {
           <div className="border-t border-gray-700 pt-8 text-center">
             <p className="text-gray-400">
               © 2024 MAGAPE. Tous droits réservés. |
-              <a href="#" className="hover:text-white transition-colors"> Mentions légales</a> |
-              <a href="#" className="hover:text-white transition-colors"> Politique de confidentialité</a>
+              <a href="#" className="hover:text-[#fe1556] transition-colors"> Mentions légales</a> |
+              <a href="#" className="hover:text-[#32a3ff] transition-colors"> Politique de confidentialité</a>
             </p>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </>
   );
 }
