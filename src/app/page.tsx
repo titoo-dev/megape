@@ -126,7 +126,7 @@ export default function Home() {
             <p className="text-xl text-gray-300">Une mission claire. Un langage commun. Une famille unie.</p>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group bg-gradient-to-br from-[#fe1556]/20 to-[#fe1556]/10 p-8 rounded-2xl border border-[#fe1556]/20 hover:border-[#fe1556]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/10">
               <Heart className="w-12 h-12 text-[#fe1556] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-2">Mission d'amour</h3>
@@ -144,18 +144,18 @@ export default function Home() {
               <h3 className="text-xl font-semibold text-white mb-2">Notre promesse</h3>
               <p className="text-gray-400">Rassembler, inspirer, équiper. Toujours ensemble. Construire des ponts d'unité dans toute la francophonie.</p>
             </div>
-            </div>
+          </div>
         </div>
       </section>
 
       {/* Maillots MAGAPE Section */}
-      {/* <section id="products" className="py-20 bg-gray-800">
+      <section id="products" className="py-20 bg-gray-800">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full mb-6">
-                <Zap className="w-4 h-4 text-red-400 mr-2" />
-                <span className="text-red-400 text-sm font-medium">PRODUIT PHARE</span>
+              <div className="inline-flex items-center px-4 py-2 bg-[#fe1556]/10 border border-[#fe1556]/30 rounded-full mb-6 backdrop-blur-sm">
+                <Zap className="w-4 h-4 text-[#fe1556] mr-2" />
+                <span className="text-[#fe1556] text-sm font-medium">PRODUIT PHARE</span>
               </div>
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -167,14 +167,14 @@ export default function Home() {
               </p>
 
               <p className="text-gray-400 mb-8">
-                Le sport, et surtout le football, rassemble des millions de personnes. 
-                Quand on porte le même maillot, on joue pour la même cause. Le Maillot MAGAPE est bien plus qu'un vêtement : 
-                <strong className="text-gray-300"> c'est une bannière d'unité pour dire au monde : "Nous sommes une seule famille en Christ".</strong>
+                Le sport, et surtout le football, rassemble des millions de personnes.
+                Quand on porte le même maillot, on joue pour la même cause. Le Maillot MAGAPE est bien plus qu'un vêtement :
+                <strong className="text-[#32a3ff]"> c'est une bannière d'unité pour dire au monde : "Nous sommes une seule famille en Christ".</strong>
               </p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#32a3ff] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">Design aux couleurs MAGAPE</h4>
                     <p className="text-gray-400">Fièrement porté par nos membres</p>
@@ -182,7 +182,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#32a3ff] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">Symbole fédérateur</h4>
                     <p className="text-gray-400">Pour vos rassemblements, vos cultes, vos sorties</p>
@@ -190,7 +190,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#32a3ff] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">Personnalisation</h4>
                     <p className="text-gray-400">Nous aidons les églises et groupes de jeunesse à créer leurs uniformes</p>
@@ -198,26 +198,75 @@ export default function Home() {
                 </div>
               </div>
 
-              <button className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full font-semibold hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-600 transition-colors">
-                Rejoignez l'équipe MAGAPE <ArrowRight className="inline ml-2" />
+              <button className="group relative px-8 py-4 bg-[#fe1556] text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-[#fe1556]/30">
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+
+                {/* Button content */}
+                <span className="relative z-10 flex items-center">
+                  Rejoignez l'équipe MAGAPE
+                  <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
               </button>
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-orange-400/20 blur-3xl"></div>
-              <div className="relative bg-gradient-to-br from-red-800/30 to-orange-800/30 rounded-3xl p-12 border border-red-400/20">
-                <div className="aspect-square bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Users className="w-32 h-32 mx-auto mb-4 opacity-80" />
-                    <p className="text-2xl font-bold">MAGAPE</p>
-                    <p className="text-lg">Unis pour impacter</p>
+              {/* Background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 blur-3xl animate-pulse"></div>
+
+              {/* Stacked Cards Container */}
+              <div className="relative perspective-1000">
+                {/* Card 3 - Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-700/40 to-gray-600/40 rounded-3xl transform rotate-6 scale-90 border border-gray-500/20"></div>
+
+                {/* Card 2 - Middle */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#32a3ff]/30 to-[#fe1556]/20 rounded-3xl transform rotate-3 scale-95 border border-[#32a3ff]/30 shadow-lg"></div>
+
+                {/* Card 1 - Front */}
+                <div className="relative bg-gradient-to-br from-[#fe1556]/20 to-[#32a3ff]/20 rounded-3xl p-12 border border-[#fe1556]/30 hover:border-[#fe1556]/50 transition-all duration-500 hover:transform hover:scale-102 hover:rotate-1 shadow-2xl backdrop-blur-sm">
+                  <div className="aspect-square bg-gradient-to-br from-[#fe1556] via-[#ff4577] to-[#32a3ff] rounded-2xl flex items-center justify-center shadow-2xl shadow-[#fe1556]/30 hover:shadow-[#fe1556]/50 transition-all duration-500 relative overflow-hidden group">
+                    {/* Animated background pattern */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Jersey Image Content */}
+                    <div className="relative z-10 p-4 w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
+                        <div className="relative group-hover:scale-105 transition-transform duration-500 w-full h-full overflow-hidden rounded-lg group-hover:rounded-sm">
+                        <Image
+                          src="/image-1.jpg"
+                          alt="Maillot MAGAPE"
+                          fill
+                          className="object-cover rounded-lg group-hover:rounded-2xl transition-all duration-500 group-hover:brightness-110 group-hover:contrast-110 group-hover:saturate-125"
+                        />
+
+                        {/* Gradient overlay shader */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#fe1556]/20 via-transparent to-[#32a3ff]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg group-hover:rounded-2xl"></div>
+
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+
+                        {/* Glowing edge effect */}
+                        <div className="absolute inset-0 rounded-lg group-hover:rounded-2xl border-2 border-transparent group-hover:border-white/50 transition-all duration-500 group-hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.1)]"></div>
+                        </div>
+                    </div>
+
+                    {/* Enhanced shimmer effect on container */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                  </div>
+
+                  {/* Card bottom section */}
+                  <div className="mt-6 text-center">
+                    <div className="flex items-center justify-center space-x-2 text-gray-300 group-hover:text-white transition-colors duration-300">
+                      <div className="w-2 h-2 bg-[#fe1556] rounded-full animate-pulse"></div>
+                      <span className="text-sm font-medium">Portez vos valeurs</span>
+                      <div className="w-2 h-2 bg-[#32a3ff] rounded-full animate-pulse"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Émissions & Podcasts Section */}
       {/* <section id="media" className="py-20 bg-gray-900">
