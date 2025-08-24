@@ -6,7 +6,7 @@ import ProductsSection from '@/components/ProductsSection';
 import MediaSection from '@/components/MediaSection';
 import CahierSection from '@/components/CahierSection';
 import ContactSection from '@/components/ContactSection';
-import StatsSection from '@/components/StatsSection';
+// import StatsSection from '@/components/StatsSection';
 import Footer from '@/components/Footer';
 import HeroServer from '@/components/HeroSever';
 
@@ -20,7 +20,7 @@ export default function Home() {
       <MediaSection />
       <CahierSection />
       <ContactSection />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <Footer />
     </>
   );
