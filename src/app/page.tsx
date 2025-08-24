@@ -21,7 +21,7 @@ export default function Home() {
       <CahierSection />
       <ContactSection />
       <StatsSection />
-                  <Footer />
+      <Footer />
     </>
   );
 }
