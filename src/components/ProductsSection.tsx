@@ -80,17 +80,13 @@ export default function ProductsSection() {
             ref={imageRef}
             className="relative w-80 h-80 md:w-96 md:h-96 transition-transform duration-75 ease-out"
           >
-            <div className="relative w-full h-full bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group hover:shadow-[#fe1556]/20">
+            <div className="relative w-full h-full bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group">
               <Image 
-                src="/image-1.jpg" 
+                src="/image-1.png" 
                 alt="Maillot MAGAPE" 
                 fill 
-                className="object-cover transition-all duration-500 group-hover:scale-105" 
+                className="object-cover transition-all duration-500 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
-              
-              {/* Subtle hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[#fe1556]/5"></div>
             </div>
             
             {/* Image caption */}
