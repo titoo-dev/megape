@@ -10,6 +10,17 @@ alwaysApply: true
     Chez **MAGAPE**, nous croyons que lorsque les chrétiens se rassemblent autour d’une même vision, l’impact devient illimité.  
     Notre mission est simple : **créer des actions, des produits et des évènements** qui fortifient notre identité en Christ, renforcent notre sentiment d’appartenance et construisent des ponts d’unité dans toute la francophonie.
 
+    **Objectif :**
+    Créer un site web pour **MAGAPE** avec **l'UI/UX identique au site Freebox Ultra** (https://www.free.fr/freebox/freebox-ultra/), tout en intégrant **le contenu de MAGAPE** (vision, produits, podcasts, ebook, communauté).
+
+
+    1. **UI/UX à cloner :**
+    - Layout similaire à Freebox Ultra : sections plein écran, transitions fluides, scroll storytelling.
+    - Animations GSAP + ScrollTrigger (fade-in, parallax, timelines).
+    - Hero Section immersive avec CTA clair.
+    - Responsive mobile/tablette/desktop identique à Freebox Ultra.
+    - Expérience utilisateur fluide (type SPA, transitions douces).
+
     ---
 
     ## Section 1 – Vision & Univers graphique
