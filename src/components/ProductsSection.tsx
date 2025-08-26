@@ -133,7 +133,7 @@ export default function ProductsSection() {
 
         {/* Call to Action */}
         <div className="text-center">
-          <button className="group px-8 py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25 transform hover:scale-105">
+          <button className="group px-8 py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25">
             <span className="flex items-center">
               Rejoignez l'équipe MAGAPE 
               <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
