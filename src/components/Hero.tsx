@@ -48,13 +48,12 @@ export default function Hero() {
       yoyo: true
     });
 
-    // Floating orbs animations
+    // Floating orbs animations (simplified)
     orbsRef.current.forEach((orb, index) => {
-      if (orb) {
+      if (orb && index < 2) { // Only animate first 2 orbs
         gsap.to(orb, {
           y: index % 2 === 0 ? -20 : -15,
           x: index % 2 === 0 ? 10 : -10,
-          rotation: index % 2 === 0 ? 5 : -3,
           duration: 4 + index * 1.5,
           ease: "sine.inOut",
           repeat: -1,
@@ -63,15 +62,7 @@ export default function Hero() {
       }
     });
 
-    // Pulse animation for center orb
-    gsap.to(".center-orb", {
-      opacity: 0.6,
-      scale: 1.05,
-      duration: 4,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true
-    });
+
 
     // Gradient text animation
     gsap.to(".gradient-text", {
@@ -114,7 +105,7 @@ export default function Hero() {
       scale: 0.8
     });
 
-    gsap.set([floatingBg1Ref.current, floatingBg2Ref.current, floatingBg3Ref.current], {
+    gsap.set([floatingBg1Ref.current, floatingBg2Ref.current], {
       scale: 0,
       opacity: 0,
       rotation: -180
@@ -126,7 +117,7 @@ export default function Hero() {
     });
 
     // Animate background elements with smooth entrance
-    tl.to([floatingBg1Ref.current, floatingBg2Ref.current, floatingBg3Ref.current], {
+    tl.to([floatingBg1Ref.current, floatingBg2Ref.current], {
       scale: 1,
       opacity: 1,
       rotation: 0,
@@ -226,12 +217,7 @@ export default function Hero() {
       repeat: -1
     });
 
-    gsap.to(floatingBg3Ref.current, {
-      rotation: 360,
-      duration: 25,
-      ease: "none",
-      repeat: -1
-    });
+
 
   }, { scope: containerRef });
 
@@ -242,34 +228,14 @@ export default function Hero() {
       {/* Animated Background Gradient */}
       <div className="bg-gradient-animated absolute inset-0 bg-gradient-to-r from-[#fe1556]/20 via-gray-900 to-[#32a3ff]/20" style={{backgroundSize: '200% 200%'}}></div>
       
-      {/* Enhanced Floating Orbs */}
+      {/* Simplified Floating Orbs */}
       <div className="absolute inset-0">
-        {/* Large center orb */}
-        <div 
-          ref={el => { if (el) orbsRef.current[0] = el; }}
-          className="center-orb absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#fe1556]/30 to-[#32a3ff]/20 rounded-full blur-3xl opacity-40"
-        ></div>
-        
-        {/* Enhanced floating orbs */}
-        <div ref={el => { if (el) { orbsRef.current[1] = el; floatingBg1Ref.current = el; } }} className="absolute top-20 left-10 w-72 h-72 bg-[#fe1556]/20 rounded-full blur-3xl"></div>
-        <div ref={el => { if (el) { orbsRef.current[2] = el; floatingBg2Ref.current = el; } }} className="absolute bottom-20 right-10 w-96 h-96 bg-[#32a3ff]/20 rounded-full blur-3xl"></div>
-        <div ref={el => { if (el) { orbsRef.current[3] = el; floatingBg3Ref.current = el; } }} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-full blur-2xl"></div>
-        
-        {/* Small accent orbs */}
-        <div ref={el => { if (el) orbsRef.current[4] = el; }} className="absolute top-1/4 right-1/4 w-32 h-32 bg-[#fe1556]/30 rounded-full blur-xl"></div>
-        <div ref={el => { if (el) orbsRef.current[5] = el; }} className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-[#32a3ff]/30 rounded-full blur-lg"></div>
+        {/* Main floating orbs */}
+        <div ref={el => { if (el) { orbsRef.current[0] = el; floatingBg1Ref.current = el; } }} className="absolute top-20 left-10 w-72 h-72 bg-[#fe1556]/20 rounded-full blur-3xl"></div>
+        <div ref={el => { if (el) { orbsRef.current[1] = el; floatingBg2Ref.current = el; } }} className="absolute bottom-20 right-10 w-80 h-80 bg-[#32a3ff]/20 rounded-full blur-3xl"></div>
       </div>
       
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div>
+
 
       <div className="relative container mx-auto max-w-7xl px-4 pt-32 pb-20">
         <div className="text-center max-w-5xl mx-auto">
