@@ -173,14 +173,7 @@ export default function EnBrefSection() {
       createAutoScroll();
     }
 
-    // Animation des gradients de fond
-    gsap.to(".bg-gradient-animated-brief", {
-      backgroundPosition: "100% 50%",
-      duration: 6,
-      ease: "none",
-      repeat: -1,
-      yoyo: true
-    });
+
 
   }, { scope: sectionRef });
 
@@ -256,24 +249,15 @@ export default function EnBrefSection() {
 
   return (
     <section ref={sectionRef} className="relative py-20 bg-gray-900 overflow-hidden">
-      {/* Background gradient animé */}
-      <div className="bg-gradient-animated-brief absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 via-gray-900 to-[#32a3ff]/10" style={{backgroundSize: '200% 200%'}}></div>
-      
-      {/* Orbes flottants */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-[#fe1556]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-[#32a3ff]/20 rounded-full blur-3xl"></div>
-      </div>
 
       <div className="relative container mx-auto max-w-7xl px-4">
         {/* En-tête */}
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="text-5xl md:text-6xl font-bold text-white mb-6">
+        <div className="flex items-center justify-between mb-16">
+          <h2 ref={titleRef} className="text-3xl md:text-4xl font-bold text-white">
             En bref
           </h2>
           
-          {/* Navigation */}
-          <div ref={navigationRef} className="flex items-center justify-center space-x-4 mb-8">
+          <div ref={navigationRef} className="flex items-center space-x-4">
             <button 
               onClick={scrollLeft}
               className="p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
@@ -290,10 +274,11 @@ export default function EnBrefSection() {
         </div>
 
         {/* Carrousel */}
-        <div 
-          className="relative overflow-hidden"
-          onMouseEnter={handleUserInteraction}
-        >
+        <div className="relative overflow-hidden">
+          {/* Shadow masks on sides */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-20 pointer-events-none"></div>
+          
           <div ref={trackRef} className="flex space-x-8" style={{ width: 'fit-content' }}>
             {duplicatedCards.map((card, index) => {
               const IconComponent = card.icon;
