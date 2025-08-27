@@ -29,17 +29,23 @@ export default function Hero() {
     
     if (prefersReduced) {
       // Show all elements immediately if user prefers reduced motion
-      gsap.set([badgeRef.current, titleMainRef.current, titleSubRef.current, subtitleRef.current, descriptionRef.current, button1Ref.current, button2Ref.current, chevronRef.current], {
+      gsap.set([badgeRef.current, titleMainRef.current, titleSubRef.current, subtitleRef.current, descriptionRef.current, button1Ref.current, button2Ref.current, chevronRef.current, floatingBg1Ref.current, floatingBg2Ref.current], {
         opacity: 1,
         y: 0,
-        scale: 1
+        scale: 1,
+        x: 0,
+        rotationX: 0,
+        rotationY: 0,
+        filter: "blur(0px)"
       });
+      gsap.set(underlineRef.current, { scaleX: 1 });
+      gsap.set(titleWordsRef.current, { opacity: 1, y: 0, rotationX: 0 });
       return;
     }
 
     const tl = gsap.timeline({ delay: 0.3 });
 
-    // Background gradient animation
+    // Background animations (continuous)
     gsap.to(".bg-gradient-animated", {
       backgroundPosition: "100% 50%",
       duration: 8,
@@ -48,23 +54,7 @@ export default function Hero() {
       yoyo: true
     });
 
-    // Floating orbs animations (simplified)
-    orbsRef.current.forEach((orb, index) => {
-      if (orb && index < 2) { // Only animate first 2 orbs
-        gsap.to(orb, {
-          y: index % 2 === 0 ? -20 : -15,
-          x: index % 2 === 0 ? 10 : -10,
-          duration: 4 + index * 1.5,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true
-        });
-      }
-    });
-
-
-
-    // Gradient text animation
+    // Gradient text animation (continuous)
     gsap.to(".gradient-text", {
       backgroundPosition: "100% 50%",
       duration: 3,
@@ -198,14 +188,15 @@ export default function Hero() {
       ease: "elastic.out(1, 0.6)"
     }, "-=0.3");
 
-    // Add continuous floating animation for background elements
+    // Continuous floating animations (outside of main timeline)
     gsap.to(floatingBg1Ref.current, {
       y: -15,
       x: 10,
       duration: 4,
       ease: "sine.inOut",
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      delay: 2 // Start after main timeline
     });
 
     gsap.to(floatingBg2Ref.current, {
@@ -214,10 +205,24 @@ export default function Hero() {
       duration: 5,
       ease: "sine.inOut",
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      delay: 2.5 // Start after main timeline
     });
 
-
+    // Floating orbs animations (outside main timeline)
+    orbsRef.current.forEach((orb, index) => {
+      if (orb && index < 2) {
+        gsap.to(orb, {
+          y: index % 2 === 0 ? -20 : -15,
+          x: index % 2 === 0 ? 10 : -10,
+          duration: 4 + index * 1.5,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+          delay: 3 + index * 0.5 // Staggered start after main timeline
+        });
+      }
+    });
 
   }, { scope: containerRef });
 
