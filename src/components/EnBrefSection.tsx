@@ -7,10 +7,7 @@ import { Heart, Zap, Shield, Users, Book, Mic, ChevronLeft, ChevronRight } from 
 
 export default function EnBrefSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const cardsRefs = useRef<HTMLDivElement[]>([]);
-  const navigationRef = useRef<HTMLDivElement>(null);
   const autoScrollTween = useRef<gsap.core.Tween | null>(null);
   const userInteracted = useRef(false);
 
@@ -66,8 +63,8 @@ export default function EnBrefSection() {
     }
   ];
 
-  // Créer suffisamment de copies pour un scroll infini fluide
-  const duplicatedCards = [...cards, ...cards, ...cards, ...cards];
+  // Using minimal duplication for seamless infinite scroll
+  const duplicatedCards = [...cards, ...cards];
 
   useGSAP(() => {
     // Check for reduced motion preference
@@ -76,75 +73,19 @@ export default function EnBrefSection() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
-      gsap.set([titleRef.current, navigationRef.current, ...cardsRefs.current], {
-        opacity: 1,
-        y: 0
-      });
       return;
     }
 
-    // Animation d'entrée de la section
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // États initiaux
-    gsap.set(titleRef.current, {
-      opacity: 0,
-      y: 50
-    });
-
-    gsap.set(navigationRef.current, {
-      opacity: 0,
-      y: 30
-    });
-
-    gsap.set(cardsRefs.current, {
-      opacity: 0,
-      y: 60,
-      scale: 0.9
-    });
-
-    // Animations d'entrée
-    tl.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .to(navigationRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.5")
-    .to(cardsRefs.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-      stagger: 0.1
-    }, "-=0.4");
-
-    // Configuration du carrousel infini
+    // Configuration du carrousel infini avec technique de repositionnement
     if (trackRef.current) {
       const cardWidth = 320;
       const gap = 32;
       const actualCardWidth = cardWidth + gap;
-      const originalSetLength = cards.length;
-      const totalCards = duplicatedCards.length;
+      const singleSetWidth = cards.length * actualCardWidth;
       
-      // Position de départ - commencer avec le premier set visible
-      const startPosition = -actualCardWidth * originalSetLength;
-      
+      // Position de départ
       gsap.set(trackRef.current, {
-        x: startPosition
+        x: 0
       });
 
       // Fonction pour créer l'animation auto-scroll
@@ -152,29 +93,19 @@ export default function EnBrefSection() {
         if (userInteracted.current) return;
         
         autoScrollTween.current = gsap.to(trackRef.current, {
-          x: startPosition - (actualCardWidth * originalSetLength),
-          duration: 30,
+          x: -singleSetWidth,
+          duration: 20,
           ease: "none",
           repeat: -1,
-          onUpdate: () => {
-            if (!trackRef.current || userInteracted.current) return;
-            
-            const currentX = gsap.getProperty(trackRef.current, "x") as number;
-            const threshold = startPosition - (actualCardWidth * originalSetLength * 0.9);
-            
-            // Repositionnement seamless quand on approche de la fin
-            if (currentX <= threshold) {
-              gsap.set(trackRef.current, { x: startPosition });
-            }
+          onRepeat: () => {
+            // Reset position seamlessly when animation repeats
+            gsap.set(trackRef.current, { x: 0 });
           }
         });
       };
 
       createAutoScroll();
     }
-
-
-
   }, { scope: sectionRef });
 
   // Cleanup effect
@@ -197,25 +128,21 @@ export default function EnBrefSection() {
     const cardWidth = 320;
     const gap = 32;
     const actualCardWidth = cardWidth + gap;
-    const originalSetLength = cards.length;
-    const startPosition = -actualCardWidth * originalSetLength;
+    const singleSetWidth = cards.length * actualCardWidth;
     
     const currentX = gsap.getProperty(trackRef.current, "x") as number;
-    const newX = currentX + actualCardWidth;
+    let newX = currentX + actualCardWidth;
     
-    // Gérer le wrap-around vers la droite
-    const maxX = startPosition + actualCardWidth;
-    if (newX > maxX) {
-      // Se téléporter à la fin du dernier set pour un effet seamless
-      const wrapX = startPosition - (actualCardWidth * (originalSetLength - 1));
-      gsap.set(trackRef.current, { x: wrapX });
-    } else {
-      gsap.to(trackRef.current, {
-        x: newX,
-        duration: 0.6,
-        ease: "power2.out"
-      });
+    // Handle wrap-around
+    if (newX > 0) {
+      newX = -singleSetWidth + actualCardWidth;
     }
+    
+    gsap.to(trackRef.current, {
+      x: newX,
+      duration: 0.6,
+      ease: "power2.out"
+    });
   };
 
   const scrollRight = () => {
@@ -226,25 +153,21 @@ export default function EnBrefSection() {
     const cardWidth = 320;
     const gap = 32;
     const actualCardWidth = cardWidth + gap;
-    const originalSetLength = cards.length;
-    const startPosition = -actualCardWidth * originalSetLength;
+    const singleSetWidth = cards.length * actualCardWidth;
     
     const currentX = gsap.getProperty(trackRef.current, "x") as number;
-    const newX = currentX - actualCardWidth;
+    let newX = currentX - actualCardWidth;
     
-    // Gérer le wrap-around vers la gauche
-    const minX = startPosition - (actualCardWidth * (originalSetLength + 1));
-    if (newX < minX) {
-      // Se téléporter au début du premier set pour un effet seamless
-      const wrapX = startPosition + actualCardWidth;
-      gsap.set(trackRef.current, { x: wrapX });
-    } else {
-      gsap.to(trackRef.current, {
-        x: newX,
-        duration: 0.6,
-        ease: "power2.out"
-      });
+    // Handle wrap-around
+    if (newX <= -singleSetWidth) {
+      newX = 0;
     }
+    
+    gsap.to(trackRef.current, {
+      x: newX,
+      duration: 0.6,
+      ease: "power2.out"
+    });
   };
 
   return (
@@ -253,11 +176,11 @@ export default function EnBrefSection() {
       <div className="relative container mx-auto max-w-7xl px-4">
         {/* En-tête */}
         <div className="flex items-center justify-between mb-16">
-          <h2 ref={titleRef} className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
             En bref
           </h2>
           
-          <div ref={navigationRef} className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <button 
               onClick={scrollLeft}
               className="p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
@@ -285,7 +208,6 @@ export default function EnBrefSection() {
               return (
                 <div
                   key={index}
-                  ref={el => { if (el) cardsRefs.current[index] = el; }}
                   className={`flex-shrink-0 w-80 h-96 bg-gradient-to-br ${card.bgGradient} rounded-3xl border border-white/10 backdrop-blur-sm p-8 hover:border-white/20 transition-all duration-500 group cursor-pointer relative overflow-hidden`}
                 >
                   {/* Effet de shine au hover */}
@@ -328,7 +250,7 @@ export default function EnBrefSection() {
         {/* Indicateur de scroll */}
         <div className="text-center mt-12">
           <p className="text-gray-400 text-sm">
-            Faites défiler pour découvrir toutes nos missions
+            Défilement automatique infini • Utilisez les flèches pour naviguer
           </p>
         </div>
       </div>
