@@ -84,6 +84,10 @@ export default function ExplainSection() {
 
     return () => {
       tl.kill();
+      // Refresh ScrollTrigger for following sections when this section is cleaned up
+      if (typeof window !== 'undefined' && ScrollTrigger) {
+        ScrollTrigger.refresh();
+      }
     };
 
   }, { scope: sectionRef, dependencies: [isCanvasReady, letterReady] });

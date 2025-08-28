@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import { Headphones, AudioLines, Play, Globe, Mic, Radio } from 'lucide-react';
@@ -91,6 +91,17 @@ export default function MediaSectionLarge() {
     }
   ];
 
+  // Ensure ScrollTrigger is properly refreshed after component mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && ScrollTrigger) {
+        ScrollTrigger.refresh();
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(() => {
     if (!sectionRef.current || !containerRef.current || !cardsRef.current || !textContentRef.current) return;
 
@@ -120,6 +131,11 @@ export default function MediaSectionLarge() {
       });
       return;
     }
+
+    // Wait for any previous ScrollTrigger animations to settle
+    const initDelay = gsap.delayedCall(0.1, () => {
+      ScrollTrigger.refresh();
+    });
 
     // Header entrance animation
     const headerTl = gsap.timeline({
@@ -164,7 +180,29 @@ export default function MediaSectionLarge() {
       ease: "power2.out"
     }, "-=0.4");
 
-    // Set up the pinning for the cards container
+    // Set initial card positions to prevent jumping
+    mediaProducts.forEach((_, index) => {
+      const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
+      if (card) {
+        gsap.set(card, { 
+          opacity: 0,
+          z: index,
+          transformOrigin: "center center"
+        });
+        
+        // Ensure proper initial positioning
+        const cardMain = card.querySelector('div[class*="h-[600px]"]') as HTMLElement;
+        if (cardMain) {
+          gsap.set(cardMain, { 
+            scale: 0.9, 
+            y: 30,
+            transformOrigin: "center center"
+          });
+        }
+      }
+    });
+
+    // Set up the pinning for the cards container with improved settings
     ScrollTrigger.create({
       trigger: container,
       start: "top top",
@@ -172,6 +210,8 @@ export default function MediaSectionLarge() {
       pin: cards,
       pinSpacing: false,
       anticipatePin: 1,
+      invalidateOnRefresh: true,
+      refreshPriority: -1 // Lower priority to execute after other ScrollTriggers
     });
 
     // Create scroll-driven fade animations for each card/text pair
@@ -184,9 +224,7 @@ export default function MediaSectionLarge() {
         const cardMain = card.querySelector('div[class*="h-[600px]"]') as HTMLElement;
         const imageElement = card.querySelector('img') as HTMLElement;
 
-        // Set initial states
-        gsap.set(card, { opacity: 0 });
-        gsap.set(cardMain, { scale: 0.9, y: 30 });
+        // Set text block initial state
         gsap.set(textBlock, { opacity: 0, x: -50 });
         
         // Image initial state
@@ -305,6 +343,11 @@ export default function MediaSectionLarge() {
         });
       }
     });
+
+    // Cleanup function
+    return () => {
+      initDelay.kill();
+    };
 
   }, { scope: sectionRef });
 
