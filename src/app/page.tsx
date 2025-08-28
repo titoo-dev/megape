@@ -3,6 +3,7 @@
 import Nav from '@/components/Nav';
 import MissionSection from '@/components/MissionSection';
 import EnBrefSection from '@/components/EnBrefSection';
+import ExplainSection from '@/components/ExplainSection';
 import ProductsSection from '@/components/ProductsSection';
 import MediaSection from '@/components/MediaSection';
 import CahierSection from '@/components/CahierSection';
@@ -18,6 +19,7 @@ export default function Home() {
       <HeroServer />
       <EnBrefSection />
       <MissionSection />
+      <ExplainSection />
       <ProductsSection />
       <MediaSection />
       <CahierSection />
