@@ -1,77 +1,106 @@
 'use client';
-import { useRef, forwardRef, useImperativeHandle, useEffect } from 'react';
-import { Text3D } from '@react-three/drei';
+
+import { useRef, forwardRef, useImperativeHandle, useEffect, useMemo } from 'react';
 import * as THREE from 'three';
+// use regular BoxGeometry instead of RoundedBox for simpler mesh
+import { useLoader } from '@react-three/fiber'
 
 interface LetterM3DProps {
   rotation?: [number, number, number];
   position?: [number, number, number];
   scale?: number;
   onReady?: () => void;
+  imageUrl?: string;
 }
 
-const LetterM3D = forwardRef<THREE.Group, LetterM3DProps>(({ 
-  rotation = [0, 0, 0], 
+const LetterM3D = forwardRef<THREE.Group, LetterM3DProps>(({
+  rotation = [0, 0, 0],
   position = [0, 0, 0],
   scale = 1,
-  onReady
+  onReady,
+  imageUrl = '/images/agape_m.jpg'
 }, ref) => {
   const groupRef = useRef<THREE.Group>(null);
-  
-  // Properly expose the group ref to parent component
+
+  // load texture via useLoader (per request)
+  const texture = useLoader(THREE.TextureLoader, imageUrl);
+
   useImperativeHandle(ref, () => groupRef.current!, []);
-  
-  // Call onReady when component is mounted and ref is available
+
   useEffect(() => {
-    if (groupRef.current && onReady) {
-      onReady();
-    }
+    if (groupRef.current && onReady) onReady();
   }, [onReady]);
+
+  // configure texture and compute aspect to size the 3D mesh to the image
+  const { material, boxArgs } = useMemo(() => {
+    // defensive image access
+    const img = texture?.image as
+      | { width?: number; height?: number }
+      | HTMLImageElement
+      | HTMLCanvasElement
+      | undefined;
+
+  // texture settings: do NOT repeat — show a single copy of the image
+  // centered on the geometry. Use ClampToEdgeWrapping so the UVs outside
+  // [0,1] are clamped and the texture won't tile.
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.flipY = true;
+  texture.generateMipmaps = true;
+
+  // Ensure a single copy of the image is used
+  texture.repeat.set(1, 1);
+
+  // Compute offset to center the image on the geometry. If the geometry's
+  // aspect differs from the texture, the material UVs will show letterbox.
+  // Offsetting by 0.5 centers the texture in UV space.
+  texture.offset.set(0, 0);
+
+  // Keep the center at default (0.5,0.5) so rotations/pivots are intuitive
+  texture.center.set(0.5, 0.5);
+  texture.rotation = 0;
+
+    // compute aspect to preserve image proportions
+    const aspect = img && img.width && img.height ? img.width / img.height : 1;
+    const maxDim = 3.5; // target max size for the bigger side
+    let width: number;
+    let height: number;
+    if (aspect >= 1) {
+      // landscape or square
+      width = maxDim;
+      height = Math.max(0.001, maxDim / aspect);
+    } else {
+      // portrait
+      height = maxDim;
+      width = Math.max(0.001, maxDim * aspect);
+    }
+    const depth = 0.12;
+
+    const mat = new THREE.MeshStandardMaterial({
+      map: texture,
+      transparent: true,
+      opacity: 0.98,
+      side: THREE.DoubleSide,
+      metalness: 0.05,
+      roughness: 0.7,
+    });
+
+    return {
+      material: mat,
+      boxArgs: [width, height, depth] as [number, number, number],
+    };
+  }, [texture]);
 
   return (
     <group ref={groupRef} rotation={rotation} position={position} scale={scale}>
-      {/* Main letter M */}
-      <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={2}
-        height={0.5}
-        curveSegments={12}
-        bevelEnabled
-        bevelThickness={0.1}
-        bevelSize={0.05}
-        bevelOffset={0}
-        bevelSegments={5}
-        position={[-1, -1, 0]}
-      >
-        M
-        <meshStandardMaterial
-          color="#fe1556"
-          metalness={0.8}
-          roughness={0.2}
-          emissive="#fe1556"
-          emissiveIntensity={0.05}
-        />
-      </Text3D>
-      
-      {/* Accent geometry - subtle glowing edges */}
-      <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={2.05}
-        height={0.1}
-        curveSegments={12}
-        position={[-1.025, -1.025, -0.25]}
-      >
-        M
-        <meshStandardMaterial
-          color="#32a3ff"
-          metalness={0.9}
-          roughness={0.1}
-          emissive="#32a3ff"
-          emissiveIntensity={0.2}
-          transparent
-          opacity={0.6}
-        />
-      </Text3D>
+      {/* center the box and orient front to camera-friendly side */}
+      <mesh rotation={[0, 0, 0]}>
+        <boxGeometry args={boxArgs} />
+        {/* apply the material with the loaded texture */}
+        <primitive object={material} attach="material" />
+      </mesh>
     </group>
   );
 });
