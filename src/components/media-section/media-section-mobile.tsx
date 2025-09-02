@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import { Headphones, AudioLines, Play, Globe, Mic, Radio } from 'lucide-react';
@@ -13,6 +13,7 @@ if (typeof window !== 'undefined') {
 export default function MediaSectionMobile() {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -90,11 +91,23 @@ export default function MediaSectionMobile() {
     }
   ];
 
+  // Ensure ScrollTrigger is properly refreshed after component mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && ScrollTrigger) {
+        ScrollTrigger.refresh();
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(() => {
-    if (!sectionRef.current || !containerRef.current || !textContentRef.current) return;
+    if (!sectionRef.current || !containerRef.current || !cardsRef.current || !textContentRef.current) return;
 
     const section = sectionRef.current;
     const container = containerRef.current;
+    const cards = cardsRef.current;
     const textContent = textContentRef.current;
 
     // Check for reduced motion preference
@@ -110,13 +123,19 @@ export default function MediaSectionMobile() {
         scale: 1
       });
       mediaProducts.forEach((_, index) => {
+        const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
         const textBlock = textContent.querySelector(`[data-text="${index}"]`) as HTMLElement;
-        if (textBlock) {
-          gsap.set(textBlock, { opacity: 1, x: 0, y: 0, scale: 1 });
+        if (card && textBlock) {
+          gsap.set([card, textBlock], { opacity: 1, x: 0, y: 0, scale: 1 });
         }
       });
       return;
     }
+
+    // Wait for any previous ScrollTrigger animations to settle
+    const initDelay = gsap.delayedCall(0.1, () => {
+      ScrollTrigger.refresh();
+    });
 
     // Header entrance animation
     const headerTl = gsap.timeline({
@@ -161,48 +180,133 @@ export default function MediaSectionMobile() {
       ease: "power2.out"
     }, "-=0.4");
 
-    // Mobile animations - simpler reveal animations
+    // Set initial card positions to prevent jumping
+    mediaProducts.forEach((_, index) => {
+      const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
+      if (card) {
+        gsap.set(card, { 
+          opacity: 0,
+          z: index,
+          transformOrigin: "center center"
+        });
+        
+        // Ensure proper initial positioning for mobile cards
+        const cardMain = card.querySelector('div[class*="h-[300px]"]') as HTMLElement;
+        if (cardMain) {
+          gsap.set(cardMain, { 
+            scale: 0.9, 
+            y: 20,
+            transformOrigin: "center center"
+          });
+        }
+      }
+    });
+
+    // Set up the pinning for the cards container (pinned at top for mobile)
+    ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: "bottom bottom",
+      pin: cards,
+      pinSpacing: false,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      refreshPriority: -1
+    });
+
+    // Create scroll-driven fade animations for each card/text pair
     mediaProducts.forEach((product, index) => {
+      const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
       const textBlock = textContent.querySelector(`[data-text="${index}"]`) as HTMLElement;
       
-      if (textBlock) {
-        // Set initial state for mobile
-        gsap.set(textBlock, { 
-          opacity: 0,
-          y: 50
-        });
+      if (card && textBlock) {
+        // Get card main element
+        const cardMain = card.querySelector('div[class*="h-[300px]"]') as HTMLElement;
+        const imageElement = card.querySelector('img') as HTMLElement;
 
-        // Create entrance animation for mobile
-        gsap.timeline({
+        // Set text block initial state
+        gsap.set(textBlock, { opacity: 0, y: 30 });
+        
+        // Image initial state
+        if (imageElement) gsap.set(imageElement, { scale: 1.1 });
+
+        // Create scroll-driven timeline
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: textBlock,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+            start: "top center+=100",
+            end: "bottom center-=100",
+            scrub: 2,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              
+              // Only show current card
+              if (progress > 0.1 && progress < 0.9) {
+                gsap.set(card, { zIndex: 100 + index });
+              } else {
+                gsap.set(card, { zIndex: index });
+              }
+            }
           }
-        }).to(textBlock, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out"
         });
 
-        // Background image parallax effect for mobile
-        const bgImage = textBlock.querySelector('img') as HTMLElement;
-        if (bgImage) {
-          gsap.set(bgImage, { scale: 1.1 });
-          
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: textBlock,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
-            }
-          }).to(bgImage, {
+        // Entrance animation (fade in)
+        tl.to(card, {
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out"
+        }, 0)
+        .to(cardMain, {
+          scale: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "back.out(1.2)"
+        }, 0.1)
+        .to(textBlock, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out"
+        }, 0.1);
+
+        // Image animation
+        if (imageElement) {
+          tl.to(imageElement, {
             scale: 1,
-            ease: "none"
-          });
+            duration: 0.6,
+            ease: "power2.out"
+          }, 0.2);
+        }
+
+        // Exit animation (fade out) - only for non-last cards
+        if (index < mediaProducts.length - 1) {
+          tl.to(card, {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in"
+          }, 0.7)
+          .to(cardMain, {
+            scale: 0.95,
+            y: -10,
+            duration: 0.4,
+            ease: "power2.in"
+          }, 0.7)
+          .to(textBlock, {
+            opacity: 0.2,
+            y: 20,
+            duration: 0.3,
+            ease: "power2.in"
+          }, 0.8);
+        } else {
+          // Last card stays visible
+          tl.to(card, {
+            opacity: 1,
+            duration: 0.2
+          }, 0.7)
+          .to(textBlock, {
+            opacity: 1,
+            duration: 0.2
+          }, 0.8);
         }
       }
     });
@@ -240,6 +344,11 @@ export default function MediaSectionMobile() {
       }
     });
 
+    // Cleanup function
+    return () => {
+      initDelay.kill();
+    };
+
   }, { scope: sectionRef });
 
   return (
@@ -268,61 +377,68 @@ export default function MediaSectionMobile() {
 
       {/* Main Content Container */}
       <div ref={containerRef} className="relative" style={{ height: `${(mediaProducts.length + 1) * 100}vh` }}>
-        
-        {/* Mobile Layout */}
-        <div>
-          <div ref={textContentRef} className="space-y-0">
-            {mediaProducts.map((product, index) => (
-              <div 
-                key={product.id}
-                data-text={index}
-                className="relative min-h-screen flex items-center overflow-hidden"
-              >
-                {/* Background Image with Clamp Effect */}
-                <div className="absolute inset-0">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                  {/* Gradient Overlay for Text Readability */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-gray-900/40"
-                    style={{
-                      background: `linear-gradient(to top, rgb(17 24 39), rgb(17 24 39 / 0.9), rgb(17 24 39 / 0.6)), linear-gradient(135deg, ${product.color}10, transparent 70%)`
-                    }}
-                  ></div>
-                  
-                  {/* Top Clamp Effect */}
-                  <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-gray-900 to-transparent"></div>
-                  
-                  {/* Bottom Clamp Effect */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-20">
-                  <div className="max-w-sm sm:max-w-lg space-y-4 sm:space-y-6">
-                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-900/70 border border-gray-700/50 rounded-full backdrop-blur-sm">
-                      <product.icon className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" style={{ color: product.color }} />
-                      <span className="text-xs sm:text-sm font-medium" style={{ color: product.color }}>
-                        {product.subtitle.toUpperCase()}
-                      </span>
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          {/* Mobile Layout with Pinned Images at Top */}
+          <div className="flex flex-col">
+            
+            {/* Pinned Images Container (Top) */}
+            <div ref={cardsRef} className="h-[300px] flex items-center justify-center sticky top-24 z-20 mb-8">
+              <div className="relative w-full max-w-md mx-auto">
+                {mediaProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    data-card={index}
+                    className="absolute inset-0 opacity-0 flex items-center justify-center"
+                  >
+                    {/* Main Card */}
+                    <div className="relative h-[300px] w-full rounded-xl overflow-hidden shadow-2xl">
+                      {/* Background Image */}
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-gray-900/20"></div>
+                      
+                      {/* Card Badge */}
+                      <div className="absolute top-4 left-4">
+                        <div className="inline-flex items-center px-3 py-1.5 bg-gray-900/70 border border-gray-700/50 rounded-full backdrop-blur-sm">
+                          <product.icon className="w-3 h-3 mr-1.5" style={{ color: product.color }} />
+                          <span className="text-xs font-medium" style={{ color: product.color }}>
+                            {product.subtitle.toUpperCase()}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg">
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Scrollable Text Content (Bottom) */}
+            <div ref={textContentRef} className="space-y-16 sm:space-y-24 relative z-10">
+              {mediaProducts.map((product, index) => (
+                <div 
+                  key={product.id}
+                  data-text={index}
+                  className="opacity-0 min-h-[80vh] flex items-center"
+                >
+                  <div className="w-full max-w-2xl mx-auto space-y-4 sm:space-y-6 px-4">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
                       {product.title}
                     </h3>
                     
-                    <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed drop-shadow-md">
+                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed text-center">
                       {product.description}
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
                       <button 
-                        className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                        className="w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105"
                         style={{ 
                           backgroundColor: product.color,
                           boxShadow: `0 10px 30px ${product.color}30`
@@ -330,34 +446,32 @@ export default function MediaSectionMobile() {
                       >
                         Écouter maintenant
                       </button>
-                      <button className="px-5 sm:px-6 py-2.5 sm:py-3 border border-gray-400/80 rounded-full text-gray-200 hover:text-white hover:border-gray-300 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base">
+                      <button className="w-full sm:w-auto px-6 py-3 border border-gray-600 rounded-full text-gray-300 hover:text-white hover:border-gray-400 transition-all duration-300 text-sm sm:text-base">
                         En savoir plus
                       </button>
                     </div>
+
+                    {/* Decorative Elements */}
+                    <div className="relative flex justify-center pt-8">
+                      <div 
+                        className="w-16 h-16 rounded-full blur-xl opacity-20"
+                        style={{ backgroundColor: product.color }}
+                      ></div>
+                    </div>
                   </div>
                 </div>
-
-                {/* Decorative Elements */}
-                <div 
-                  className="absolute top-1/4 right-4 sm:right-8 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full blur-xl sm:blur-2xl opacity-20"
-                  style={{ backgroundColor: product.color }}
-                ></div>
-                <div 
-                  className="absolute bottom-1/3 left-4 sm:left-8 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full blur-lg sm:blur-xl opacity-15"
-                  style={{ backgroundColor: product.color }}
-                ></div>
+              ))}
+              
+              {/* Final Quote */}
+              <div ref={finalQuoteRef} className="text-center py-24 sm:py-32 min-h-[80vh] flex items-center justify-center">
+                <div className="relative inline-block max-w-xl sm:max-w-2xl mx-auto px-4">
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-xl sm:rounded-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 border border-white/10 backdrop-blur-sm">
+                    "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
+                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-xl sm:rounded-2xl blur-xl opacity-50"></div>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Final Quote */}
-        <div ref={finalQuoteRef} className="relative text-center py-24 sm:py-32 min-h-screen flex items-center justify-center px-4 sm:px-6">
-          <div className="relative inline-block max-w-xl sm:max-w-2xl">
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-xl sm:rounded-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 border border-white/10 backdrop-blur-sm">
-              "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
-            </p>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-xl sm:rounded-2xl blur-xl opacity-50"></div>
+            </div>
           </div>
         </div>
       </div>
