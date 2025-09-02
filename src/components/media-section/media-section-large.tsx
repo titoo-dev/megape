@@ -359,54 +359,54 @@ export default function MediaSectionLarge() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#fe1556]/5 via-gray-900 to-[#32a3ff]/5 pointer-events-none"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#32a3ff]/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#fe1556]/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
+      <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-[#32a3ff]/10 rounded-full blur-2xl sm:blur-3xl animate-pulse pointer-events-none"></div>
+      <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-[#fe1556]/10 rounded-full blur-2xl sm:blur-3xl animate-pulse pointer-events-none"></div>
 
       {/* Header Section */}
-      <div ref={headerRef} className="relative z-10 py-20">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
-          <div ref={badgeRef} className="inline-flex items-center px-4 py-2 bg-[#32a3ff]/10 border border-[#32a3ff]/30 rounded-full mb-8 backdrop-blur-sm">
-            <Headphones className="w-4 h-4 text-[#32a3ff] mr-2" />
-            <span className="text-[#32a3ff] text-sm font-medium">CONTENU AUDIO</span>
+      <div ref={headerRef} className="relative z-10 py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div ref={badgeRef} className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-[#32a3ff]/10 border border-[#32a3ff]/30 rounded-full mb-6 sm:mb-8 backdrop-blur-sm">
+            <Headphones className="w-3 h-3 sm:w-4 sm:h-4 text-[#32a3ff] mr-1.5 sm:mr-2" />
+            <span className="text-[#32a3ff] text-xs sm:text-sm font-medium">CONTENU AUDIO</span>
           </div>
-          <h2 ref={titleRef} className="text-4xl md:text-6xl font-bold text-white mb-4">Émissions & Podcasts</h2>
-          <p ref={subtitleRef} className="text-xl text-gray-300 mb-4">Des voix qui rassemblent. Des histoires qui inspirent.</p>
-          <p ref={descriptionRef} className="text-lg text-gray-400 mb-8 max-w-4xl mx-auto">Nous créons des contenus audiovisuels qui renforcent notre foi et nous rapprochent les uns des autres. Dans nos émissions et podcasts, on apprend, on rit, on réfléchit, on partage… et on construit une culture commune pour les chrétiens francophones.</p>
+          <h2 ref={titleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">Émissions & Podcasts</h2>
+          <p ref={subtitleRef} className="text-lg sm:text-xl text-gray-300 mb-3 sm:mb-4">Des voix qui rassemblent. Des histoires qui inspirent.</p>
+          <p ref={descriptionRef} className="text-sm sm:text-base md:text-lg text-gray-400 mb-6 sm:mb-8 max-w-4xl mx-auto px-2">Nous créons des contenus audiovisuels qui renforcent notre foi et nous rapprochent les uns des autres. Dans nos émissions et podcasts, on apprend, on rit, on réfléchit, on partage… et on construit une culture commune pour les chrétiens francophones.</p>
         </div>
       </div>
 
       {/* Main Content Container */}
       <div ref={containerRef} className="relative" style={{ height: `${(mediaProducts.length + 1) * 100}vh` }}>
-        <div className="container mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start">
             
             {/* Left Side - Text Content */}
-            <div ref={textContentRef} className="space-y-32">
+            <div ref={textContentRef} className="space-y-24 sm:space-y-32">
               {mediaProducts.map((product, index) => (
                 <div 
                   key={product.id}
                   data-text={index}
                   className="opacity-0 min-h-screen flex items-center"
                 >
-                  <div className="space-y-6">
-                    <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-full backdrop-blur-sm">
-                      <product.icon className="w-4 h-4 mr-2" style={{ color: product.color }} />
-                      <span className="text-sm font-medium" style={{ color: product.color }}>
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-800/50 border border-gray-700/50 rounded-full backdrop-blur-sm">
+                      <product.icon className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" style={{ color: product.color }} />
+                      <span className="text-xs sm:text-sm font-medium" style={{ color: product.color }}>
                         {product.subtitle.toUpperCase()}
                       </span>
                     </div>
                     
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                       {product.title}
                     </h3>
                     
-                    <p className="text-lg text-gray-300 leading-relaxed">
+                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                       {product.description}
                     </p>
                     
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                       <button 
-                        className="px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105"
+                        className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105"
                         style={{ 
                           backgroundColor: product.color,
                           boxShadow: `0 10px 30px ${product.color}20`
@@ -414,7 +414,7 @@ export default function MediaSectionLarge() {
                       >
                         Écouter maintenant
                       </button>
-                      <button className="px-6 py-3 border border-gray-600 rounded-full text-gray-300 hover:text-white hover:border-gray-400 transition-all duration-300">
+                      <button className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 border border-gray-600 rounded-full text-gray-300 hover:text-white hover:border-gray-400 transition-all duration-300 text-sm sm:text-base">
                         En savoir plus
                       </button>
                     </div>
@@ -423,19 +423,19 @@ export default function MediaSectionLarge() {
               ))}
               
               {/* Final Quote */}
-              <div ref={finalQuoteRef} className="text-center py-32 min-h-screen flex items-center justify-center">
-                <div className="relative inline-block">
-                  <p className="text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-full px-8 py-6 border border-white/10 backdrop-blur-sm">
+              <div ref={finalQuoteRef} className="text-center py-24 sm:py-32 min-h-screen flex items-center justify-center">
+                <div className="relative inline-block max-w-2xl mx-auto px-4">
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-2xl sm:rounded-full px-6 sm:px-8 py-4 sm:py-6 border border-white/10 backdrop-blur-sm">
                     "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
                   </p>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-full blur-xl opacity-50"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-2xl sm:rounded-full blur-xl opacity-50"></div>
                 </div>
               </div>
             </div>
 
             {/* Right Side - Pinned Cards */}
             <div ref={cardsRef} className="h-screen flex items-center justify-center sticky top-0">
-              <div className="relative w-full max-w-lg mx-auto">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto">
                 {mediaProducts.map((product, index) => (
                   <div
                     key={product.id}
@@ -443,7 +443,7 @@ export default function MediaSectionLarge() {
                     className="absolute inset-0 opacity-0 flex items-center justify-center"
                   >
                     {/* Main Card */}
-                    <div className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative h-[400px] sm:h-[500px] md:h-[600px] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                       {/* Background Image */}
                       <Image
                         src={product.image}

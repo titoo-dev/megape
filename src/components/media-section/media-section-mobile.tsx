@@ -250,19 +250,19 @@ export default function MediaSectionMobile() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#fe1556]/5 via-gray-900 to-[#32a3ff]/5 pointer-events-none"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#32a3ff]/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#fe1556]/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
+      <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-[#32a3ff]/10 rounded-full blur-2xl sm:blur-3xl animate-pulse pointer-events-none"></div>
+      <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-[#fe1556]/10 rounded-full blur-2xl sm:blur-3xl animate-pulse pointer-events-none"></div>
 
       {/* Header Section */}
-      <div ref={headerRef} className="relative z-10 py-20">
-        <div className="container mx-auto max-w-7xl px-4 text-center">
-          <div ref={badgeRef} className="inline-flex items-center px-4 py-2 bg-[#32a3ff]/10 border border-[#32a3ff]/30 rounded-full mb-8 backdrop-blur-sm">
-            <Headphones className="w-4 h-4 text-[#32a3ff] mr-2" />
-            <span className="text-[#32a3ff] text-sm font-medium">CONTENU AUDIO</span>
+      <div ref={headerRef} className="relative z-10 py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div ref={badgeRef} className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-[#32a3ff]/10 border border-[#32a3ff]/30 rounded-full mb-6 sm:mb-8 backdrop-blur-sm">
+            <Headphones className="w-3 h-3 sm:w-4 sm:h-4 text-[#32a3ff] mr-1.5 sm:mr-2" />
+            <span className="text-[#32a3ff] text-xs sm:text-sm font-medium">CONTENU AUDIO</span>
           </div>
-          <h2 ref={titleRef} className="text-4xl md:text-6xl font-bold text-white mb-4">Émissions & Podcasts</h2>
-          <p ref={subtitleRef} className="text-xl text-gray-300 mb-4">Des voix qui rassemblent. Des histoires qui inspirent.</p>
-          <p ref={descriptionRef} className="text-lg text-gray-400 mb-8 max-w-4xl mx-auto">Nous créons des contenus audiovisuels qui renforcent notre foi et nous rapprochent les uns des autres. Dans nos émissions et podcasts, on apprend, on rit, on réfléchit, on partage… et on construit une culture commune pour les chrétiens francophones.</p>
+          <h2 ref={titleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">Émissions & Podcasts</h2>
+          <p ref={subtitleRef} className="text-lg sm:text-xl text-gray-300 mb-3 sm:mb-4">Des voix qui rassemblent. Des histoires qui inspirent.</p>
+          <p ref={descriptionRef} className="text-sm sm:text-base md:text-lg text-gray-400 mb-6 sm:mb-8 max-w-4xl mx-auto px-2">Nous créons des contenus audiovisuels qui renforcent notre foi et nous rapprochent les uns des autres. Dans nos émissions et podcasts, on apprend, on rit, on réfléchit, on partage… et on construit une culture commune pour les chrétiens francophones.</p>
         </div>
       </div>
 
@@ -303,26 +303,26 @@ export default function MediaSectionMobile() {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 container mx-auto px-6 py-20">
-                  <div className="max-w-lg space-y-6">
-                    <div className="inline-flex items-center px-4 py-2 bg-gray-900/70 border border-gray-700/50 rounded-full backdrop-blur-sm">
-                      <product.icon className="w-4 h-4 mr-2" style={{ color: product.color }} />
-                      <span className="text-sm font-medium" style={{ color: product.color }}>
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+                  <div className="max-w-sm sm:max-w-lg space-y-4 sm:space-y-6">
+                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-900/70 border border-gray-700/50 rounded-full backdrop-blur-sm">
+                      <product.icon className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" style={{ color: product.color }} />
+                      <span className="text-xs sm:text-sm font-medium" style={{ color: product.color }}>
                         {product.subtitle.toUpperCase()}
                       </span>
                     </div>
                     
-                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 drop-shadow-lg">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg">
                       {product.title}
                     </h3>
                     
-                    <p className="text-base sm:text-lg text-gray-200 leading-relaxed drop-shadow-md">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed drop-shadow-md">
                       {product.description}
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       <button 
-                        className="px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                        className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                         style={{ 
                           backgroundColor: product.color,
                           boxShadow: `0 10px 30px ${product.color}30`
@@ -330,7 +330,7 @@ export default function MediaSectionMobile() {
                       >
                         Écouter maintenant
                       </button>
-                      <button className="px-6 py-3 border border-gray-400/80 rounded-full text-gray-200 hover:text-white hover:border-gray-300 transition-all duration-300 backdrop-blur-sm">
+                      <button className="px-5 sm:px-6 py-2.5 sm:py-3 border border-gray-400/80 rounded-full text-gray-200 hover:text-white hover:border-gray-300 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base">
                         En savoir plus
                       </button>
                     </div>
@@ -339,11 +339,11 @@ export default function MediaSectionMobile() {
 
                 {/* Decorative Elements */}
                 <div 
-                  className="absolute top-1/4 right-8 w-32 h-32 rounded-full blur-2xl opacity-20"
+                  className="absolute top-1/4 right-4 sm:right-8 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full blur-xl sm:blur-2xl opacity-20"
                   style={{ backgroundColor: product.color }}
                 ></div>
                 <div 
-                  className="absolute bottom-1/3 left-8 w-24 h-24 rounded-full blur-xl opacity-15"
+                  className="absolute bottom-1/3 left-4 sm:left-8 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full blur-lg sm:blur-xl opacity-15"
                   style={{ backgroundColor: product.color }}
                 ></div>
               </div>
@@ -352,12 +352,12 @@ export default function MediaSectionMobile() {
         </div>
 
         {/* Final Quote */}
-        <div ref={finalQuoteRef} className="relative text-center py-32 min-h-screen flex items-center justify-center px-6">
-          <div className="relative inline-block max-w-2xl">
-            <p className="text-lg sm:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-2xl px-6 sm:px-8 py-6 border border-white/10 backdrop-blur-sm">
+        <div ref={finalQuoteRef} className="relative text-center py-24 sm:py-32 min-h-screen flex items-center justify-center px-4 sm:px-6">
+          <div className="relative inline-block max-w-xl sm:max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-xl sm:rounded-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 border border-white/10 backdrop-blur-sm">
               "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
             </p>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-2xl blur-xl opacity-50"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/10 to-[#32a3ff]/10 rounded-xl sm:rounded-2xl blur-xl opacity-50"></div>
           </div>
         </div>
       </div>
