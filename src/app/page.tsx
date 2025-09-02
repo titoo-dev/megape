@@ -45,7 +45,7 @@ export default function Home() {
     gsap.set(buttonRef.current, {
       left: '1rem',
       right: '1rem',
-      width: 'auto'
+      width: 'auto',
     });
 
     // Create scroll-driven animation with multiple steps
@@ -60,14 +60,6 @@ export default function Home() {
         if (progress <= 0.2) {
           gsap.to(buttonRef.current, {
             left: `${1 + (progress * 10)}rem`,
-            right: '1rem',
-            duration: 0.2,
-            ease: "power1.out"
-          });
-        } else if (progress <= 0.5) {
-          const stepProgress = (progress - 0.2) / 0.3;
-          gsap.to(buttonRef.current, {
-            left: `${3 + (stepProgress * 15)}rem`,
             right: '1rem',
             duration: 0.2,
             ease: "power1.out"
@@ -128,15 +120,12 @@ export default function Home() {
       <button
         ref={buttonRef}
         className="
-          fixed bottom-6 z-50 lg:hidden
+          fixed bottom-6 w-full z-50 lg:hidden
           bg-[#fe1556] text-white font-semibold 
-          py-3 px-4 rounded-full shadow-lg overflow-hidden group
+          py-3 px-6 rounded-full shadow-lg overflow-hidden group
         "
-        onClick={() => {
-          window.open('https://magape.org/#contact', '_self');
-        }}
       >
-        <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
+        {/* <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div> */}
         <span className="text-sm font-semibold text-center block relative z-10">
           Recevoir l'ebook gratuit
         </span>
