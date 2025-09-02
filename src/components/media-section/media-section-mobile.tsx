@@ -383,7 +383,7 @@ export default function MediaSectionMobile() {
           <div className="flex flex-col">
             
             {/* Pinned Images Container (Top) */}
-            <div ref={cardsRef} className="h-[300px] flex items-center justify-center sticky top-24 z-20 mb-8">
+            <div ref={cardsRef} className="h-[300px] flex items-center justify-center sticky top-20 z-20 mb-8">
               <div className="relative w-full max-w-md mx-auto">
                 {mediaProducts.map((product, index) => (
                   <div
