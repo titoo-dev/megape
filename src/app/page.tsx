@@ -57,21 +57,12 @@ export default function Home() {
       onUpdate: (self) => {
         const progress = self.progress;
 
-        if (progress <= 0.2) {
-          gsap.to(buttonRef.current, {
-            left: `${1 + (progress * 10)}rem`,
-            right: '1rem',
-            duration: 0.2,
-            ease: "power1.out"
-          });
-        } else {
-          gsap.to(buttonRef.current, {
-            left: 'auto',
-            right: '1rem',
-            duration: 0.2,
-            ease: "power2.out"
-          });
-        }
+        gsap.to(buttonRef.current, {
+          left: `${1 + (progress * 7)}rem`,
+          right: '1rem',
+          duration: 0.2,
+          ease: "power1.out"
+        });
       }
     });
   });
