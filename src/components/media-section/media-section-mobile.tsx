@@ -98,7 +98,7 @@ export default function MediaSectionMobile() {
         ScrollTrigger.refresh();
       }
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -111,8 +111,8 @@ export default function MediaSectionMobile() {
     const textContent = textContentRef.current;
 
     // Check for reduced motion preference
-    const prefersReduced = typeof window !== 'undefined' && 
-      window.matchMedia && 
+    const prefersReduced = typeof window !== 'undefined' &&
+      window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
@@ -161,40 +161,40 @@ export default function MediaSectionMobile() {
       duration: 0.8,
       ease: "back.out(1.7)"
     })
-    .to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.5")
-    .to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.6")
-    .to(descriptionRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.4");
+      .to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=0.5")
+      .to(subtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.6")
+      .to(descriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.4");
 
     // Set initial card positions to prevent jumping
     mediaProducts.forEach((_, index) => {
       const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
       if (card) {
-        gsap.set(card, { 
+        gsap.set(card, {
           opacity: 0,
           z: index,
           transformOrigin: "center center"
         });
-        
+
         // Ensure proper initial positioning for mobile cards
-        const cardMain = card.querySelector('div[class*="h-[300px]"]') as HTMLElement;
+        const cardMain = card.querySelector('div[class*="h-[400px]"]') as HTMLElement;
         if (cardMain) {
-          gsap.set(cardMain, { 
-            scale: 0.9, 
+          gsap.set(cardMain, {
+            scale: 0.9,
             y: 20,
             transformOrigin: "center center"
           });
@@ -218,15 +218,15 @@ export default function MediaSectionMobile() {
     mediaProducts.forEach((product, index) => {
       const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
       const textBlock = textContent.querySelector(`[data-text="${index}"]`) as HTMLElement;
-      
+
       if (card && textBlock) {
         // Get card main element
-        const cardMain = card.querySelector('div[class*="h-[300px]"]') as HTMLElement;
+        const cardMain = card.querySelector('div[class*="h-[400px]"]') as HTMLElement;
         const imageElement = card.querySelector('img') as HTMLElement;
 
         // Set text block initial state
         gsap.set(textBlock, { opacity: 0, y: 30 });
-        
+
         // Image initial state
         if (imageElement) gsap.set(imageElement, { scale: 1.1 });
 
@@ -234,12 +234,12 @@ export default function MediaSectionMobile() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: textBlock,
-            start: "top center+=100",
-            end: "bottom center-=100",
+            start: "top center+=200",
+            end: "bottom center-=200",
             scrub: 2,
             onUpdate: (self) => {
               const progress = self.progress;
-              
+
               // Only show current card
               if (progress > 0.1 && progress < 0.9) {
                 gsap.set(card, { zIndex: 100 + index });
@@ -256,18 +256,18 @@ export default function MediaSectionMobile() {
           duration: 0.4,
           ease: "power2.out"
         }, 0)
-        .to(cardMain, {
-          scale: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "back.out(1.2)"
-        }, 0.1)
-        .to(textBlock, {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out"
-        }, 0.1);
+          .to(cardMain, {
+            scale: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "back.out(1.2)"
+          }, 0.1)
+          .to(textBlock, {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out"
+          }, 0.1);
 
         // Image animation
         if (imageElement) {
@@ -285,35 +285,35 @@ export default function MediaSectionMobile() {
             duration: 0.4,
             ease: "power2.in"
           }, 0.7)
-          .to(cardMain, {
-            scale: 0.95,
-            y: -10,
-            duration: 0.4,
-            ease: "power2.in"
-          }, 0.7)
-          .to(textBlock, {
-            opacity: 0.2,
-            y: 20,
-            duration: 0.3,
-            ease: "power2.in"
-          }, 0.8);
+            .to(cardMain, {
+              scale: 0.95,
+              y: -10,
+              duration: 0.4,
+              ease: "power2.in"
+            }, 0.7)
+            .to(textBlock, {
+              opacity: 0.2,
+              y: 20,
+              duration: 0.3,
+              ease: "power2.in"
+            }, 0.8);
         } else {
           // Last card stays visible
           tl.to(card, {
             opacity: 1,
             duration: 0.2
           }, 0.7)
-          .to(textBlock, {
-            opacity: 1,
-            duration: 0.2
-          }, 0.8);
+            .to(textBlock, {
+              opacity: 1,
+              duration: 0.2
+            }, 0.8);
         }
       }
     });
 
     // Final quote animation
     gsap.set(finalQuoteRef.current, { opacity: 0, y: 50, scale: 0.9 });
-    
+
     ScrollTrigger.create({
       trigger: finalQuoteRef.current,
       start: "top 80%",
@@ -352,9 +352,9 @@ export default function MediaSectionMobile() {
   }, { scope: sectionRef });
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="media" 
+    <section
+      ref={sectionRef}
+      id="media"
       className="relative bg-gray-900 overflow-hidden"
     >
       {/* Background Effects */}
@@ -378,13 +378,13 @@ export default function MediaSectionMobile() {
       {/* Main Content Container */}
       <div ref={containerRef} className="relative" style={{ height: `${(mediaProducts.length + 1) * 100}vh` }}>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
           {/* Mobile Layout with Pinned Images at Top */}
           <div className="flex flex-col">
-            
+
             {/* Pinned Images Container (Top) */}
-            <div ref={cardsRef} className="h-[300px] flex items-center justify-center sticky top-20 z-20 mb-8">
-              <div className="relative w-full max-w-md mx-auto">
+            <div ref={cardsRef} className="h-[400px] flex items-center justify-center sticky top-14 z-20 mb-8">
+              <div className="relative w-full max-w-lg mx-auto">
                 {mediaProducts.map((product, index) => (
                   <div
                     key={product.id}
@@ -392,27 +392,17 @@ export default function MediaSectionMobile() {
                     className="absolute inset-0 opacity-0 flex items-center justify-center"
                   >
                     {/* Main Card */}
-                    <div className="relative h-[300px] w-full rounded-xl overflow-hidden shadow">
+                    <div className="relative h-[400px] w-full rounded-xl overflow-hidden shadow">
                       {/* Background Image */}
                       <Image
                         src={product.image}
                         alt={product.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         priority={index === 0}
                       />
                       {/* Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-gray-900/20"></div>
-                      
-                      {/* Card Badge */}
-                      <div className="absolute top-4 left-4">
-                        <div className="inline-flex items-center px-3 py-1.5 bg-gray-900/70 border border-gray-700/50 rounded-full backdrop-blur-sm">
-                          <product.icon className="w-3 h-3 mr-1.5" style={{ color: product.color }} />
-                          <span className="text-xs font-medium" style={{ color: product.color }}>
-                            {product.subtitle.toUpperCase()}
-                          </span>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 ))}
@@ -420,50 +410,35 @@ export default function MediaSectionMobile() {
             </div>
 
             {/* Scrollable Text Content (Bottom) */}
-            <div ref={textContentRef} className="space-y-16 sm:space-y-24 relative z-10">
+            <div ref={textContentRef} className="space-y-12 sm:space-y-16 relative z-10">
               {mediaProducts.map((product, index) => (
-                <div 
+                <div
                   key={product.id}
                   data-text={index}
-                  className="opacity-0 min-h-[80vh] flex items-center"
+                  className="opacity-0 min-h-[60vh] flex items-center"
                 >
-                  <div className="w-full max-w-2xl mx-auto space-y-4 sm:space-y-6 px-4">
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
+                  <div className="w-full max-w-2xl mx-auto space-y-3 sm:space-y-4 px-4">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center">
                       {product.title}
                     </h3>
-                    
-                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed text-center">
+
+                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed text-center">
                       {product.description}
                     </p>
-                    
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
-                      <button 
-                        className="w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105"
-                        style={{ 
-                          backgroundColor: product.color,
-                          boxShadow: `0 10px 30px ${product.color}30`
-                        }}
-                      >
-                        Écouter maintenant
-                      </button>
-                      <button className="w-full sm:w-auto px-6 py-3 border border-gray-600 rounded-full text-gray-300 hover:text-white hover:border-gray-400 transition-all duration-300 text-sm sm:text-base">
-                        En savoir plus
-                      </button>
-                    </div>
 
                     {/* Decorative Elements */}
-                    <div className="relative flex justify-center pt-8">
-                      <div 
-                        className="w-16 h-16 rounded-full blur-xl opacity-20"
+                    <div className="relative flex justify-center pt-4">
+                      <div
+                        className="w-12 h-12 rounded-full blur-xl opacity-20"
                         style={{ backgroundColor: product.color }}
                       ></div>
                     </div>
                   </div>
                 </div>
               ))}
-              
+
               {/* Final Quote */}
-              <div ref={finalQuoteRef} className="text-center py-24 sm:py-32 min-h-[80vh] flex items-center justify-center">
+              <div ref={finalQuoteRef} className="text-center py-16 sm:py-20 min-h-[50vh] flex items-center justify-center">
                 <div className="relative inline-block max-w-xl sm:max-w-2xl mx-auto px-4">
                   <p className="text-base sm:text-lg md:text-xl text-gray-300 italic font-medium bg-gradient-to-r from-[#fe1556]/20 to-[#32a3ff]/20 rounded-xl sm:rounded-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 border border-white/10 backdrop-blur-sm">
                     "Parce qu'écouter ensemble, c'est déjà commencer à marcher ensemble."
