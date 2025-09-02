@@ -56,13 +56,26 @@ export default function FloatingActionButton() {
     });
   });
 
+  const handleClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start' 
+      });
+    }
+  };
+
   return (
     <button
       ref={buttonRef}
+      onClick={handleClick}
       className="
         fixed bottom-6 w-full z-50 lg:hidden
         bg-[#fe1556] text-white font-semibold 
         py-3 px-6 rounded-full shadow-lg overflow-hidden group
+        hover:bg-[#e6134d] transition-colors duration-300
+        cursor-pointer
       "
     >
       <span className="text-sm font-semibold text-center block relative z-10">

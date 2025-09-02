@@ -255,7 +255,19 @@ export default function Hero() {
           </p>
 
           <div ref={buttonsRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 w-full max-w-2xl mx-auto">
-            <button ref={button2Ref} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base md:text-lg border border-white/20 cursor-pointer transform perspective-1000 hover:bg-white/20 transition-colors duration-300">
+            <button 
+              ref={button2Ref} 
+              onClick={() => {
+                const missionSection = document.getElementById('mission');
+                if (missionSection) {
+                  missionSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start' 
+                  });
+                }
+              }}
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base md:text-lg border border-white/20 cursor-pointer transform perspective-1000 hover:bg-white/20 transition-colors duration-300"
+            >
               <span>Découvrir notre mission</span>
             </button>
           </div>
