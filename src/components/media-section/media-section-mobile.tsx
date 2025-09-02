@@ -392,7 +392,7 @@ export default function MediaSectionMobile() {
                     className="absolute inset-0 opacity-0 flex items-center justify-center"
                   >
                     {/* Main Card */}
-                    <div className="relative h-[300px] w-full rounded-xl overflow-hidden shadow-2xl">
+                    <div className="relative h-[300px] w-full rounded-xl overflow-hidden shadow">
                       {/* Background Image */}
                       <Image
                         src={product.image}
