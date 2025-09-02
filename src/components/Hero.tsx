@@ -1,4 +1,4 @@
-import { ChevronDown, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { useRef } from 'react';
@@ -12,12 +12,9 @@ export default function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  const button1Ref = useRef<HTMLButtonElement>(null);
   const button2Ref = useRef<HTMLButtonElement>(null);
-  const chevronRef = useRef<HTMLDivElement>(null);
   const floatingBg1Ref = useRef<HTMLDivElement>(null);
   const floatingBg2Ref = useRef<HTMLDivElement>(null);
-  const floatingBg3Ref = useRef<HTMLDivElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
   const orbsRef = useRef<HTMLDivElement[]>([]);
 
@@ -29,7 +26,7 @@ export default function Hero() {
     
     if (prefersReduced) {
       // Show all elements immediately if user prefers reduced motion
-      gsap.set([badgeRef.current, titleMainRef.current, titleSubRef.current, subtitleRef.current, descriptionRef.current, button1Ref.current, button2Ref.current, chevronRef.current, floatingBg1Ref.current, floatingBg2Ref.current], {
+      gsap.set([badgeRef.current, titleMainRef.current, titleSubRef.current, subtitleRef.current, descriptionRef.current, button2Ref.current, floatingBg1Ref.current, floatingBg2Ref.current], {
         opacity: 1,
         y: 0,
         scale: 1,
@@ -82,18 +79,14 @@ export default function Hero() {
       filter: "blur(10px)"
     });
 
-    gsap.set([button1Ref.current, button2Ref.current], {
+    gsap.set(button2Ref.current, {
       opacity: 0,
       y: 30,
       scale: 0.9,
       rotationY: -15
     });
 
-    gsap.set(chevronRef.current, {
-      opacity: 0,
-      y: 20,
-      scale: 0.8
-    });
+
 
     gsap.set([floatingBg1Ref.current, floatingBg2Ref.current], {
       scale: 0,
@@ -162,15 +155,7 @@ export default function Hero() {
       duration: 1,
       ease: "power2.out"
     }, "-=0.7")
-    // Animate buttons with individual control
-    .to(button1Ref.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotationY: 0,
-      duration: 0.8,
-      ease: "back.out(1.5)"
-    }, "-=0.5")
+    // Animate button
     .to(button2Ref.current, {
       opacity: 1,
       y: 0,
@@ -178,15 +163,7 @@ export default function Hero() {
       rotationY: 0,
       duration: 0.8,
       ease: "back.out(1.5)"
-    }, "-=0.6")
-    // Animate chevron
-    .to(chevronRef.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      ease: "elastic.out(1, 0.6)"
-    }, "-=0.3");
+    }, "-=0.5");
 
     // Continuous floating animations (outside of main timeline) - Responsive movement
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
@@ -278,18 +255,9 @@ export default function Hero() {
           </p>
 
           <div ref={buttonsRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 w-full max-w-2xl mx-auto">
-            <button ref={button1Ref} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] text-white rounded-full font-semibold text-sm sm:text-base md:text-lg cursor-pointer transform perspective-1000 relative overflow-hidden group">
-              <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
-              <span className="relative z-10">Recevoir l'ebook gratuit</span>
-            </button>
             <button ref={button2Ref} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base md:text-lg border border-white/20 cursor-pointer transform perspective-1000 hover:bg-white/20 transition-colors duration-300">
               <span>Découvrir notre mission</span>
             </button>
-          </div>
-
-          <div ref={chevronRef} className="flex items-center justify-center space-x-1.5 sm:space-x-2 text-gray-400">
-            <ChevronDown className="text-[#32a3ff] w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="text-sm sm:text-base">Découvrez notre vision</span>
           </div>
         </div>
       </div>
