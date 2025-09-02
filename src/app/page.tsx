@@ -45,7 +45,7 @@ export default function Home() {
       <HeroServer />
       <EnBrefSection />
       <MissionSection />
-      <ExplainSection />
+      {/* <ExplainSection /> */}
       <ProductsSection />
       <MediaSection />
       <CahierSection />

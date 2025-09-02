@@ -76,6 +76,13 @@ export default function EnBrefSection() {
       return;
     }
 
+    // Check if screen is mobile or small (disable auto scroll on mobile)
+    const isMobileOrSmall = typeof window !== 'undefined' && window.innerWidth < 768;
+
+    if (isMobileOrSmall) {
+      return;
+    }
+
     // Configuration du carrousel infini avec technique de repositionnement
     if (trackRef.current) {
       const cardWidth = 320;
@@ -91,6 +98,7 @@ export default function EnBrefSection() {
       // Fonction pour créer l'animation auto-scroll
       const createAutoScroll = () => {
         if (userInteracted.current) return;
+        if (isMobileOrSmall) return;
         
         autoScrollTween.current = gsap.to(trackRef.current, {
           x: -singleSetWidth,
