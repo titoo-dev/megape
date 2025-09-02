@@ -83,10 +83,13 @@ export default function EnBrefSection() {
       return;
     }
 
-    // Configuration du carrousel infini avec technique de repositionnement
+    // Configuration du carrousel infini avec technique de repositionnement - Responsive
     if (trackRef.current) {
-      const cardWidth = 320;
-      const gap = 32;
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+      const isTablet = typeof window !== 'undefined' && window.innerWidth < 768;
+      
+      const cardWidth = isMobile ? 288 : 320; // w-72 = 288px, w-80 = 320px
+      const gap = isMobile ? 16 : isTablet ? 24 : 32; // space-x-4 = 16px, space-x-6 = 24px, space-x-8 = 32px
       const actualCardWidth = cardWidth + gap;
       const singleSetWidth = cards.length * actualCardWidth;
       
@@ -133,8 +136,11 @@ export default function EnBrefSection() {
     
     handleUserInteraction();
     
-    const cardWidth = 320;
-    const gap = 32;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const isTablet = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    const cardWidth = isMobile ? 288 : 320;
+    const gap = isMobile ? 16 : isTablet ? 24 : 32;
     const actualCardWidth = cardWidth + gap;
     const singleSetWidth = cards.length * actualCardWidth;
     
@@ -158,8 +164,11 @@ export default function EnBrefSection() {
     
     handleUserInteraction();
     
-    const cardWidth = 320;
-    const gap = 32;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const isTablet = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    const cardWidth = isMobile ? 288 : 320;
+    const gap = isMobile ? 16 : isTablet ? 24 : 32;
     const actualCardWidth = cardWidth + gap;
     const singleSetWidth = cards.length * actualCardWidth;
     
@@ -179,73 +188,77 @@ export default function EnBrefSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-20 bg-gray-900 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 sm:py-16 md:py-20 bg-gray-900 overflow-hidden">
 
-      <div className="relative container mx-auto max-w-7xl px-4">
+      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* En-tête */}
-        <div className="flex items-center justify-between mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 sm:mb-12 md:mb-16 gap-4 sm:gap-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center sm:text-left">
             En bref
           </h2>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <button 
               onClick={scrollLeft}
-              className="p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
+              className="p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
             >
-              <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
             </button>
             <button 
               onClick={scrollRight}
-              className="p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
+              className="p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
             >
-              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>
 
         {/* Carrousel */}
         <div className="relative overflow-hidden">
-          {/* Shadow masks on sides */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-20 pointer-events-none"></div>
+          {/* Shadow masks on sides - responsive */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-32 bg-gradient-to-r from-gray-900 to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-32 bg-gradient-to-l from-gray-900 to-transparent z-20 pointer-events-none"></div>
           
-          <div ref={trackRef} className="flex space-x-8" style={{ width: 'fit-content' }}>
+          <div 
+            ref={trackRef} 
+            className="flex space-x-4 sm:space-x-6 md:space-x-8 touch-pan-x" 
+            style={{ width: 'fit-content' }}
+          >
             {duplicatedCards.map((card, index) => {
               const IconComponent = card.icon;
               return (
                 <div
                   key={index}
-                  className={`flex-shrink-0 w-80 h-96 bg-gradient-to-br ${card.bgGradient} rounded-3xl border border-white/10 backdrop-blur-sm p-8 hover:border-white/20 transition-all duration-500 group cursor-pointer relative overflow-hidden`}
+                  className={`flex-shrink-0 w-72 sm:w-80 md:w-80 h-80 sm:h-88 md:h-96 bg-gradient-to-br ${card.bgGradient} rounded-2xl sm:rounded-3xl border border-white/10 backdrop-blur-sm p-6 sm:p-8 hover:border-white/20 transition-all duration-500 group cursor-pointer relative overflow-hidden`}
                 >
                   {/* Effet de shine au hover */}
                   <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
                   
                   <div className="relative z-10 h-full flex flex-col">
                     {/* Icône */}
-                    <div className="mb-6">
+                    <div className="mb-4 sm:mb-6">
                       <IconComponent 
-                        className="w-16 h-16 group-hover:scale-110 transition-transform duration-300" 
+                        className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 group-hover:scale-110 transition-transform duration-300" 
                         style={{ color: card.color }}
                       />
                     </div>
 
                     {/* Contenu */}
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2 group-hover:text-white transition-colors">
                         {card.title}
                       </h3>
-                      <p className="text-lg font-medium mb-4" style={{ color: card.color }}>
+                      <p className="text-sm sm:text-base md:text-lg font-medium mb-3 sm:mb-4" style={{ color: card.color }}>
                         {card.subtitle}
                       </p>
-                      <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
+                      <p className="text-sm sm:text-base text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
                         {card.description}
                       </p>
                     </div>
 
                     {/* Orbe décoratif */}
                     <div 
-                      className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity"
+                      className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full blur-xl sm:blur-2xl opacity-30 group-hover:opacity-50 transition-opacity"
                       style={{ backgroundColor: card.color }}
                     ></div>
                   </div>
@@ -256,9 +269,9 @@ export default function EnBrefSection() {
         </div>
 
         {/* Indicateur de scroll */}
-        <div className="text-center mt-12">
-          <p className="text-gray-400 text-sm">
-            Défilement automatique infini • Utilisez les flèches pour naviguer
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-gray-400 text-xs sm:text-sm px-4">
+            <span className="hidden sm:inline">Défilement automatique infini • </span>Utilisez les flèches pour naviguer
           </p>
         </div>
       </div>

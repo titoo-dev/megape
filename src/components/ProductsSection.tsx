@@ -62,7 +62,7 @@ export default function ProductsSection() {
       <section
         ref={sectionRef}
         id="products"
-        className="py-20 bg-gray-900 relative overflow-hidden"
+        className="py-12 sm:py-16 md:py-20 bg-gray-900 relative overflow-hidden"
       >
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -72,35 +72,35 @@ export default function ProductsSection() {
           }}></div>
         </div>
 
-        <div className="container mx-auto max-w-4xl px-4 relative z-10">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 rounded-full mb-6">
-              <Zap className="w-4 h-4 text-[#fe1556] mr-2" />
-              <span className="text-[#fe1556] text-sm font-medium">PRODUIT PHARE</span>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-800 border border-gray-700 rounded-full mb-4 sm:mb-6">
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-[#fe1556] mr-1.5 sm:mr-2" />
+              <span className="text-[#fe1556] text-xs sm:text-sm font-medium">PRODUIT PHARE</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
               Les maillots MAGAPE
             </h2>
 
-            <p className="text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto px-2">
               Portez vos couleurs. Faites partie de l'équipe.
             </p>
 
-            <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto px-2">
               Le sport, et surtout le football, rassemble des millions de personnes. Quand on porte le même maillot, on joue pour la même cause. Le Maillot MAGAPE est bien plus qu'un vêtement :
               <strong className="text-[#32a3ff]"> c'est une bannière d'unité pour dire au monde : "Nous sommes une seule famille en Christ".</strong>
             </p>
           </div>
 
           {/* Image Section with Sticky Animation */}
-          <div className="mb-16 flex justify-center">
+          <div className="mb-12 sm:mb-16 flex justify-center">
             <div
               ref={imageRef}
-              className="relative w-80 h-80 md:w-96 md:h-96 transition-transform duration-75 ease-out"
+              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 transition-transform duration-75 ease-out"
             >
-              <div className="relative w-full h-full bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group">
+              <div className="relative w-full h-full bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group">
                 <Image
                   src="/image-1.png"
                   alt="Maillot MAGAPE"
@@ -110,49 +110,49 @@ export default function ProductsSection() {
               </div>
 
               {/* Image caption */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                <div className="flex items-center justify-center space-x-2 text-gray-400">
-                  <div className="w-2 h-2 bg-[#fe1556] rounded-full"></div>
-                  <span className="text-sm font-medium">Portez vos valeurs</span>
-                  <div className="w-2 h-2 bg-[#32a3ff] rounded-full"></div>
+              <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                <div className="flex items-center justify-center space-x-1.5 sm:space-x-2 text-gray-400">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#fe1556] rounded-full"></div>
+                  <span className="text-xs sm:text-sm font-medium">Portez vos valeurs</span>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#32a3ff] rounded-full"></div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Features Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-12 h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-[#fe1556]" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+            <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#fe1556]" />
               </div>
-              <h4 className="text-white font-semibold mb-2">Design aux couleurs MAGAPE</h4>
-              <p className="text-gray-400 text-sm">Fièrement porté par nos membres</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Design aux couleurs MAGAPE</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Fièrement porté par nos membres</p>
             </div>
 
-            <div className="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-12 h-12 bg-[#32a3ff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-[#32a3ff]" />
+            <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#32a3ff]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#32a3ff]" />
               </div>
-              <h4 className="text-white font-semibold mb-2">Symbole fédérateur</h4>
-              <p className="text-gray-400 text-sm">Pour vos rassemblements, vos cultes, vos sorties</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Symbole fédérateur</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Pour vos rassemblements, vos cultes, vos sorties</p>
             </div>
 
-            <div className="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-12 h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-[#fe1556]" />
+            <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#fe1556]" />
               </div>
-              <h4 className="text-white font-semibold mb-2">Personnalisation</h4>
-              <p className="text-gray-400 text-sm">Nous aidons les églises et groupes de jeunesse à créer leurs uniformes</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Personnalisation</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Nous aidons les églises et groupes de jeunesse à créer leurs uniformes</p>
             </div>
           </div>
 
           {/* Call to Action */}
           <div className="text-center">
-            <button className="group px-8 py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25">
-              <span className="flex items-center">
+            <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25">
+              <span className="flex items-center justify-center">
                 Rejoignez l'équipe MAGAPE
-                <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="inline ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </button>
           </div>

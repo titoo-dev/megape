@@ -188,10 +188,13 @@ export default function Hero() {
       ease: "elastic.out(1, 0.6)"
     }, "-=0.3");
 
-    // Continuous floating animations (outside of main timeline)
+    // Continuous floating animations (outside of main timeline) - Responsive movement
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const floatingScale = isMobile ? 0.5 : 1; // Reduce movement on mobile
+    
     gsap.to(floatingBg1Ref.current, {
-      y: -15,
-      x: 10,
+      y: -15 * floatingScale,
+      x: 10 * floatingScale,
       duration: 4,
       ease: "sine.inOut",
       yoyo: true,
@@ -200,8 +203,8 @@ export default function Hero() {
     });
 
     gsap.to(floatingBg2Ref.current, {
-      y: 20,
-      x: -15,
+      y: 20 * floatingScale,
+      x: -15 * floatingScale,
       duration: 5,
       ease: "sine.inOut",
       yoyo: true,
@@ -209,12 +212,12 @@ export default function Hero() {
       delay: 2.5 // Start after main timeline
     });
 
-    // Floating orbs animations (outside main timeline)
+    // Floating orbs animations (outside main timeline) - Responsive movement
     orbsRef.current.forEach((orb, index) => {
       if (orb && index < 2) {
         gsap.to(orb, {
-          y: index % 2 === 0 ? -20 : -15,
-          x: index % 2 === 0 ? 10 : -10,
+          y: (index % 2 === 0 ? -20 : -15) * floatingScale,
+          x: (index % 2 === 0 ? 10 : -10) * floatingScale,
           duration: 4 + index * 1.5,
           ease: "sine.inOut",
           repeat: -1,
@@ -229,64 +232,64 @@ export default function Hero() {
 
 
   return (
-    <section ref={containerRef} className="relative min-h-screen bg-gray-900 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen bg-gray-900 overflow-hidden flex items-center justify-center">
       {/* Animated Background Gradient */}
       <div className="bg-gradient-animated absolute inset-0 bg-gradient-to-r from-[#fe1556]/20 via-gray-900 to-[#32a3ff]/20" style={{backgroundSize: '200% 200%'}}></div>
       
-      {/* Simplified Floating Orbs */}
+      {/* Simplified Floating Orbs - Centered positioning */}
       <div className="absolute inset-0">
-        {/* Main floating orbs */}
-        <div ref={el => { if (el) { orbsRef.current[0] = el; floatingBg1Ref.current = el; } }} className="absolute top-20 left-10 w-72 h-72 bg-[#fe1556]/20 rounded-full blur-3xl"></div>
-        <div ref={el => { if (el) { orbsRef.current[1] = el; floatingBg2Ref.current = el; } }} className="absolute bottom-20 right-10 w-80 h-80 bg-[#32a3ff]/20 rounded-full blur-3xl"></div>
+        {/* Main floating orbs - positioned relative to center */}
+        <div ref={el => { if (el) { orbsRef.current[0] = el; floatingBg1Ref.current = el; } }} className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-[#fe1556]/20 rounded-full blur-2xl sm:blur-3xl"></div>
+        <div ref={el => { if (el) { orbsRef.current[1] = el; floatingBg2Ref.current = el; } }} className="absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 md:w-80 md:h-80 bg-[#32a3ff]/20 rounded-full blur-2xl sm:blur-3xl"></div>
       </div>
       
 
 
-      <div className="relative container mx-auto max-w-7xl px-4 pt-32 pb-20">
-        <div className="text-center max-w-5xl mx-auto">
-          <div ref={badgeRef} className="inline-flex items-center px-4 py-2 bg-[#fe1556]/10 border border-[#fe1556]/30 rounded-full mb-8 backdrop-blur-sm">
-            <Heart className="w-4 h-4 text-[#fe1556] mr-2" />
-            <span className="text-[#fe1556] text-sm font-medium">Unis pour impacter</span>
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="text-center max-w-5xl mx-auto flex flex-col items-center justify-center">
+          <div ref={badgeRef} className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-[#fe1556]/10 border border-[#fe1556]/30 rounded-full mb-6 sm:mb-8 backdrop-blur-sm">
+            <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-[#fe1556] mr-1.5 sm:mr-2" />
+            <span className="text-[#fe1556] text-xs sm:text-sm font-medium">Unis pour impacter</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6">
             {/* Word-by-word animation for MAGAPE */}
             <div className="block">
-              <span ref={el => { if (el) titleWordsRef.current[0] = el; }} className="inline-block mr-2">M</span>
-              <span ref={el => { if (el) titleWordsRef.current[1] = el; }} className="inline-block mr-2">A</span>
-              <span ref={el => { if (el) titleWordsRef.current[2] = el; }} className="inline-block mr-2">G</span>
-              <span ref={el => { if (el) titleWordsRef.current[3] = el; }} className="inline-block mr-2">A</span>
-              <span ref={el => { if (el) titleWordsRef.current[4] = el; }} className="inline-block mr-2">P</span>
+              <span ref={el => { if (el) titleWordsRef.current[0] = el; }} className="inline-block mr-1 sm:mr-2">M</span>
+              <span ref={el => { if (el) titleWordsRef.current[1] = el; }} className="inline-block mr-1 sm:mr-2">A</span>
+              <span ref={el => { if (el) titleWordsRef.current[2] = el; }} className="inline-block mr-1 sm:mr-2">G</span>
+              <span ref={el => { if (el) titleWordsRef.current[3] = el; }} className="inline-block mr-1 sm:mr-2">A</span>
+              <span ref={el => { if (el) titleWordsRef.current[4] = el; }} className="inline-block mr-1 sm:mr-2">P</span>
               <span ref={el => { if (el) titleWordsRef.current[5] = el; }} className="inline-block">E</span>
             </div>
-            <span ref={titleSubRef} className="gradient-text block text-3xl md:text-5xl mt-4 bg-gradient-to-r from-[#fe1556] via-[#32a3ff] to-[#fe1556] bg-clip-text text-transparent relative" style={{backgroundSize: '200% 200%'}}>
+            <span ref={titleSubRef} className="gradient-text block text-lg sm:text-xl md:text-3xl lg:text-5xl mt-2 sm:mt-4 bg-gradient-to-r from-[#fe1556] via-[#32a3ff] to-[#fe1556] bg-clip-text text-transparent relative" style={{backgroundSize: '200% 200%'}}>
               La force de l'unité chrétienne
-              <div ref={underlineRef} className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#fe1556] to-[#32a3ff] rounded-full"></div>
+              <div ref={underlineRef} className="absolute bottom-0 left-0 h-0.5 sm:h-1 bg-gradient-to-r from-[#fe1556] to-[#32a3ff] rounded-full"></div>
             </span>
           </h1>
 
-          <p ref={subtitleRef} className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
+          <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl text-gray-300 mb-3 sm:mb-4 max-w-3xl mx-auto px-2 text-center">
             "Et si, ensemble, nous devenions la preuve vivante que l'unité chrétienne change le monde ?"
           </p>
 
-          <p ref={descriptionRef} className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+          <p ref={descriptionRef} className="text-sm sm:text-base md:text-lg text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-2 text-center">
             <strong className="text-[#fe1556]">M</strong> pour Mission. <strong className="text-[#32a3ff]">Agapè</strong> pour l'amour inconditionnel de Dieu.
             Nous créons des actions, des produits et des événements qui fortifient notre identité en Christ.
           </p>
 
-          <div ref={buttonsRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <button ref={button1Ref} className="px-8 py-4 bg-[#fe1556] text-white rounded-full font-semibold text-lg cursor-pointer transform perspective-1000 relative overflow-hidden group">
+          <div ref={buttonsRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 w-full max-w-2xl mx-auto">
+            <button ref={button1Ref} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] text-white rounded-full font-semibold text-sm sm:text-base md:text-lg cursor-pointer transform perspective-1000 relative overflow-hidden group">
               <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
               <span className="relative z-10">Recevoir l'ebook gratuit</span>
             </button>
-            <button ref={button2Ref} className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg border border-white/20 cursor-pointer transform perspective-1000 hover:bg-white/20 transition-colors duration-300">
+            <button ref={button2Ref} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base md:text-lg border border-white/20 cursor-pointer transform perspective-1000 hover:bg-white/20 transition-colors duration-300">
               <span>Découvrir notre mission</span>
             </button>
           </div>
 
-          <div ref={chevronRef} className="flex items-center justify-center space-x-2 text-gray-400">
-            <ChevronDown className="text-[#32a3ff]" />
-            <span>Découvrez notre vision</span>
+          <div ref={chevronRef} className="flex items-center justify-center space-x-1.5 sm:space-x-2 text-gray-400">
+            <ChevronDown className="text-[#32a3ff] w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm sm:text-base">Découvrez notre vision</span>
           </div>
         </div>
       </div>
