@@ -101,14 +101,16 @@ export default function ProductsSection() {
               ref={imageRef}
               className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 transition-transform duration-75 ease-out"
             >
-              <div className="relative w-full h-full bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group">
-                <Image
-                  src="/image-1.png"
-                  alt="Maillot MAGAPE"
-                  fill
-                  className="object-cover transition-all duration-500 group-hover:scale-110"
-                />
-              </div>
+              <Link href="/shop/maillot">
+                <div className="relative w-full h-full bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group cursor-pointer">
+                  <Image
+                    src="/image-1.png"
+                    alt="Maillot MAGAPE"
+                    fill
+                    className="object-cover transition-all duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </Link>
 
               {/* Image caption */}
               <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
