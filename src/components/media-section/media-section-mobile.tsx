@@ -426,8 +426,21 @@ export default function MediaSectionMobile() {
                       {product.description}
                     </p>
 
+                    {/* Button */}
+                    <div className="flex justify-center pt-4">
+                      <button 
+                        className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300"
+                        style={{ 
+                          backgroundColor: product.color,
+                          boxShadow: `0 10px 30px ${product.color}20`
+                        }}
+                      >
+                        Je veux y participer
+                      </button>
+                    </div>
+
                     {/* Decorative Elements */}
-                    <div className="relative flex justify-center pt-4">
+                    <div className="relative flex justify-center pt-2">
                       <div
                         className="w-12 h-12 rounded-full blur-xl opacity-20"
                         style={{ backgroundColor: product.color }}

@@ -412,10 +412,7 @@ export default function MediaSectionLarge() {
                           boxShadow: `0 10px 30px ${product.color}20`
                         }}
                       >
-                        Écouter maintenant
-                      </button>
-                      <button className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 border border-gray-600 rounded-full text-gray-300 hover:text-white hover:border-gray-400 transition-all duration-300 text-sm sm:text-base">
-                        En savoir plus
+                        Je veux y participer
                       </button>
                     </div>
                   </div>
