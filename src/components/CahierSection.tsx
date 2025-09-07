@@ -1,5 +1,6 @@
 import { Book, Gamepad2, Heart, Star } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import SEOHead, { structuredData } from './SEOHead';
 
 export default function CahierSection() {
@@ -73,9 +74,11 @@ export default function CahierSection() {
                 <p className="text-gray-300 font-semibold text-center text-sm sm:text-base">Un cadeau parfait pour les familles, les écoles du dimanche et les groupes de jeunes.</p>
               </div>
 
-              <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30">
-                <span className="relative z-10 flex items-center justify-center">En savoir plus</span>
-              </button>
+              <Link href="/shop/cahier">
+                <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30">
+                  <span className="relative z-10 flex items-center justify-center">En savoir plus</span>
+                </button>
+              </Link>
             </div>
 
             {/* Call-to-action section - Only visible on desktop, part of text content */}
@@ -84,9 +87,11 @@ export default function CahierSection() {
                 <p className="text-gray-300 font-semibold text-center text-sm sm:text-base">Un cadeau parfait pour les familles, les écoles du dimanche et les groupes de jeunes.</p>
               </div>
 
-              <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30">
-                <span className="relative z-10 flex items-center justify-center">En savoir plus</span>
-              </button>
+              <Link href="/shop/cahier">
+                <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30">
+                  <span className="relative z-10 flex items-center justify-center">En savoir plus</span>
+                </button>
+              </Link>
             </div>
           </div>
 

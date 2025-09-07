@@ -5,7 +5,6 @@ import ProductsSection from '@/components/ProductsSection';
 import MediaSection from '@/components/MediaSection';
 import CahierSection from '@/components/CahierSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
 import HeroServer from '@/components/HeroSever';
 import FloatingActionButtonServer from '@/components/FloatingActionButtonServer';
 import SEOHead, { structuredData } from '@/components/SEOHead';
@@ -50,7 +49,6 @@ export default function Home() {
       <CahierSection />
       <ContactSection />
       {/* <StatsSection /> */}
-      <Footer />
       <FloatingActionButtonServer />
     </>
   );

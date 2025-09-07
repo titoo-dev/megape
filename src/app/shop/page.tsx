@@ -173,18 +173,16 @@ export default function ShopPage() {
                     <div>
                       <span className="text-2xl font-bold text-white">{product.price}</span>
                     </div>
-                    <Button
-                      onClick={handleContactClick}
-                      disabled={isPending}
-                      className="px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
-                      style={{ 
-                        backgroundColor: product.accentColor,
-                        boxShadow: `0 0 0 0 ${product.accentColor}40`
-                      }}
-                    >
-                      {isPending ? 'Redirection...' : 'Nous contacter'}
-                      <Heart className="ml-2 w-4 h-4" />
-                    </Button>
+                    <div className="flex gap-3">
+                      <Link href={`/shop/${product.id}`}>
+                        <Button
+                          variant="outline"
+                          className="px-4 py-3 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
+                        >
+                          Voir détails
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
