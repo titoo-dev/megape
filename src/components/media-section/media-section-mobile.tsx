@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Headphones, AudioLines, Play, Globe, Mic, Radio } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ParticipationForm from '../ParticipationForm';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -428,15 +429,17 @@ export default function MediaSectionMobile() {
 
                     {/* Button */}
                     <div className="flex justify-center pt-4">
-                      <button 
-                        className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300"
-                        style={{ 
-                          backgroundColor: product.color,
-                          boxShadow: `0 10px 30px ${product.color}20`
-                        }}
-                      >
-                        Je veux y participer
-                      </button>
+                      <ParticipationForm productTitle={product.title} productColor={product.color}>
+                        <button 
+                          className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300"
+                          style={{ 
+                            backgroundColor: product.color,
+                            boxShadow: `0 10px 30px ${product.color}20`
+                          }}
+                        >
+                          Je veux y participer
+                        </button>
+                      </ParticipationForm>
                     </div>
 
                     {/* Decorative Elements */}
