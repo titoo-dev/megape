@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { ShoppingBag } from 'lucide-react';
+import Link from 'next/link';
 
 interface NavMobileProps {
   scrolled: boolean;
@@ -38,6 +40,10 @@ export default function NavMobile({ scrolled }: NavMobileProps) {
           </div>
           
           <div className="flex items-center space-x-3">
+            <Link href="/shop" className="flex items-center justify-center space-x-2 px-3 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-sm font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/30">
+              <ShoppingBag className="w-4 h-4" />
+              <span className="hidden xs:inline">Boutique</span>
+            </Link>
             <Select onValueChange={handleNavigation} open={isOpen} onOpenChange={setIsOpen}>
               <SelectTrigger className="w-32 border-gray-600 bg-gray-800/50 text-white hover:border-gray-400 transition-colors">
                 <SelectValue placeholder="Menu" />

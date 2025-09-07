@@ -103,7 +103,7 @@ export default function Hero() {
       <div className="relative z-10 flex items-center justify-center w-full h-full px-4 sm:px-6 lg:px-8">
         <div 
           ref={logoRef}
-          className={`transition-all duration-1000 ease-out transform ${
+          className={`relative w-[85vw] h-[45vh] xs:w-[80vw] xs:h-[40vh] sm:w-[75vw] sm:h-[45vh] md:w-[65vw] md:h-[50vh] lg:w-[60vw] lg:h-[55vh] xl:w-[55vw] xl:h-[60vh] 2xl:w-[50vw] 2xl:h-[65vh] transition-all duration-1000 ease-out transform ${
             isLoaded 
               ? 'opacity-100 scale-100 translate-y-0' 
               : 'opacity-0 scale-95 translate-y-8'
@@ -112,10 +112,9 @@ export default function Hero() {
           <Image
             src="/magape_bg_removed.png"
             alt="MAGAPE Logo"
-            width={800}
-            height={400}
+            fill
             priority
-            className="w-auto h-auto max-w-[90vw] max-h-[60vh] sm:max-w-[80vw] sm:max-h-[50vh] md:max-w-[70vw] md:max-h-[40vh] object-contain"
+            className="object-contain"
             onLoad={handleImageLoad}
           />
         </div>

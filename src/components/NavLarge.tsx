@@ -1,6 +1,8 @@
 "use client";
 
+import { ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface NavLargeProps {
   scrolled: boolean;
@@ -23,9 +25,10 @@ export default function NavLarge({ scrolled }: NavLargeProps) {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="px-6 py-2.5 border-2 border-[#fe1556] text-[#fe1556] rounded-full font-medium transition-all duration-250 hover:bg-[#fe1556] hover:text-white hover:cursor-pointer">
-              Rejoindre le mouvement
-            </button>
+            <Link href="/shop" className="flex items-center space-x-2 px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-sm font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/30">
+              <ShoppingBag className="w-4 h-4" />
+              <span>Boutique</span>
+            </Link>
           </div>
         </div>
       </div>
