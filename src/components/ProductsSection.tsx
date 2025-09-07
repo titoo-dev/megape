@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Zap, Check, ArrowRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import SEOHead, { structuredData } from './SEOHead';
+import CustomJerseyForm from './CustomJerseyForm';
 
 export default function ProductsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -152,14 +153,14 @@ export default function ProductsSection() {
 
           {/* Call to Action */}
           <div className="text-center">
-            <Link href="/shop/maillot">
+            <CustomJerseyForm>
               <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25">
                 <span className="flex items-center justify-center">
-                  Rejoignez l'équipe MAGAPE
+                  Un maillot aux couleurs de mon assemblée
                   <ArrowRight className="inline ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </button>
-            </Link>
+            </CustomJerseyForm>
           </div>
         </div>
       </section>
