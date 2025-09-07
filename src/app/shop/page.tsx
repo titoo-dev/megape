@@ -100,11 +100,6 @@ export default function ShopPage() {
                 key={product.id}
                 className={`group relative bg-gradient-to-br ${product.gradient} border-gray-700 hover:border-gray-600 transition-all duration-500 overflow-hidden backdrop-blur-sm hover:shadow-2xl`}
               >
-                {/* Floating accent */}
-                <div 
-                  className="absolute top-4 right-4 w-3 h-3 rounded-full animate-pulse"
-                  style={{ backgroundColor: product.accentColor }}
-                ></div>
 
                 <CardHeader className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
