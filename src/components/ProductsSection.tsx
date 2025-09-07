@@ -75,26 +75,6 @@ export default function ProductsSection() {
         </div>
 
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header Section */}
-          <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-800 border border-gray-700 rounded-full mb-4 sm:mb-6">
-              <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-[#fe1556] mr-1.5 sm:mr-2" />
-              <span className="text-[#fe1556] text-xs sm:text-sm font-medium">PRODUIT PHARE</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
-              Les maillots MAGAPE
-            </h2>
-
-            <p className="text-lg sm:text-xl text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto px-2">
-              Portez vos couleurs. Faites partie de l'équipe.
-            </p>
-
-            <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto px-2">
-              Le sport, et surtout le football, rassemble des millions de personnes. Quand on porte le même maillot, on joue pour la même cause. Le Maillot MAGAPE est bien plus qu'un vêtement :
-              <strong className="text-[#32a3ff]"> c'est une bannière d'unité pour dire au monde : "Nous sommes une seule famille en Christ".</strong>
-            </p>
-          </div>
 
           {/* Image Section with Sticky Animation */}
           <div className="mb-12 sm:mb-16 flex justify-center">
