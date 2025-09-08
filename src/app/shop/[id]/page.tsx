@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useState } from 'react';
+import { useTransition, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, useParams } from 'next/navigation';
@@ -26,6 +26,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    type CarouselApi,
 } from '@/components/ui/carousel';
 import { toast } from 'sonner';
 
@@ -82,7 +83,7 @@ const productsData: { [key: string]: ProductData } = {
             {
                 id: 'premium',
                 name: 'Modèle Premium',
-                image: '/image-1.png',
+                image: '/images/maillot_model_2.jpg',
                 description: 'Version premium avec finitions spéciales et détails brodés'
             }
         ],
@@ -152,6 +153,7 @@ export default function ProductDetailPage() {
     const [selectedModel, setSelectedModel] = useState(0);
     const [selectedSize, setSelectedSize] = useState('');
     const [quantity, setQuantity] = useState(1);
+    const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
     const product = productsData[id];
 
@@ -186,6 +188,31 @@ export default function ProductDetailPage() {
     const incrementQuantity = () => setQuantity(prev => prev + 1);
     const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
+    const handleModelSelect = (modelIndex: number) => {
+        startTransition(() => {
+            setSelectedModel(modelIndex);
+            if (carouselApi) {
+                carouselApi.scrollTo(modelIndex);
+            }
+        });
+    };
+
+    // Sync selectedModel state when carousel changes via navigation arrows
+    useEffect(() => {
+        if (!carouselApi) return;
+
+        const onSelect = () => {
+            const current = carouselApi.selectedScrollSnap();
+            setSelectedModel(current);
+        };
+
+        carouselApi.on('select', onSelect);
+        
+        return () => {
+            carouselApi.off('select', onSelect);
+        };
+    }, [carouselApi]);
+
     return (
         <div className="min-h-screen bg-gray-900">
             {/* Header */}
@@ -214,7 +241,7 @@ export default function ProductDetailPage() {
                     <div className="space-y-6">
                         {/* Main Image Carousel */}
                         <div className="relative">
-                            <Carousel className="w-full">
+                            <Carousel className="w-full" setApi={setCarouselApi}>
                                 <CarouselContent>
                                     {product.models.map((model, index) => (
                                         <CarouselItem key={model.id}>
@@ -252,7 +279,7 @@ export default function ProductDetailPage() {
                                 {product.models.map((model, index) => (
                                     <button
                                         key={model.id}
-                                        onClick={() => setSelectedModel(index)}
+                                        onClick={() => handleModelSelect(index)}
                                         className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${selectedModel === index
                                                 ? 'border-white shadow-lg scale-105'
                                                 : 'border-gray-600 hover:border-gray-500'

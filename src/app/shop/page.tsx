@@ -1,15 +1,13 @@
 "use client";
 
-import { useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ShoppingBag, Star, Heart, Zap, Check } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Star, Zap, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 export default function ShopPage() {
-  const [isPending, startTransition] = useTransition();
 
   const products = [
     {
@@ -48,11 +46,6 @@ export default function ShopPage() {
     }
   ];
 
-  const handleContactClick = () => {
-    startTransition(() => {
-      window.location.href = '/#contact';
-    });
-  };
 
   return (
     <div className="min-h-screen bg-gray-900">
