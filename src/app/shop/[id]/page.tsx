@@ -123,7 +123,7 @@ const productsData: { [key: string]: ProductData } = {
             {
                 id: 'moyens',
                 name: 'Édition Moyens (7-10 ans)',
-                image: '/images/child-book.jpg',
+                image: '/images/book_model_2.png',
                 description: 'Pour les enfants d\'âge scolaire avec plus d\'exercices et de réflexion'
             },
             {
