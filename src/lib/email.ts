@@ -9,23 +9,6 @@ export const sendFreeEbookEmail = async ({ email }: { email: string }) => {
         to: [email],
         subject: 'Votre ebook gratuit "Unis pour impacter" - MAGAPE',
         react: FreeEbookTemplate({ email }),
-        attachments: [
-            {
-                filename: 'magape_bg_removed.png',
-                path: `${process.env.NEXT_PUBLIC_APP_URL}/magape_bg_removed.png`,
-                contentId: 'logo-image'
-            },
-            {
-                filename: 'book_model_2.png',
-                path: `${process.env.NEXT_PUBLIC_APP_URL}/images/book_model_2.png`,
-                contentId: 'ebook-cover'
-            },
-            {
-                filename: 'unis-pour-impacter.pdf',
-                path: `${process.env.NEXT_PUBLIC_APP_URL}/pdf/unis-pour-impacter.pdf`,
-                contentId: 'ebook-download'
-            },
-        ],
     });
 
     if (error) {
