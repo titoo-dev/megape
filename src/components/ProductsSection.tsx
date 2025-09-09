@@ -107,27 +107,42 @@ export default function ProductsSection() {
           {/* Features Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#fe1556]" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 relative">
+                <Image
+                  src="/magape_bg_removed.png"
+                  alt="Logo MAGAPE"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Design aux couleurs MAGAPE</h4>
-              <p className="text-gray-400 text-xs sm:text-sm">Fièrement porté par nos membres</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">MAGAPE</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Mouvement d'Agapè, symbole d'amour inconditionnel et d'unité chrétienne</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#32a3ff]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#32a3ff]" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 relative">
+                <Image
+                  src="/images/logo_2.jpg"
+                  alt="Logo Christ Roi des Rois"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Symbole fédérateur</h4>
-              <p className="text-gray-400 text-xs sm:text-sm">Pour vos rassemblements, vos cultes, vos sorties</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Christ Roi des Rois</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Reconnaissance de la souveraineté du Christ sur toutes choses</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#fe1556]/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-[#fe1556]" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 relative">
+                <Image
+                  src="/images/logo_3.jpg"
+                  alt="Logo Roi des Rois Christ"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Personnalisation</h4>
-              <p className="text-gray-400 text-xs sm:text-sm">Nous aidons les églises et groupes de jeunesse à créer leurs uniformes</p>
+              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Roi des Rois</h4>
+              <p className="text-gray-400 text-xs sm:text-sm">Affirmation de foi en Jésus-Christ comme Seigneur et Roi suprême</p>
             </div>
           </div>
 
