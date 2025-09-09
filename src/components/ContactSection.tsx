@@ -1,7 +1,54 @@
-import { Mail, Check, Book } from 'lucide-react';
+'use client';
+
+import { Mail, Check, Book, Loader2 } from 'lucide-react';
+import { useState, useTransition } from 'react';
+import { toast } from 'sonner';
 import SEOHead, { structuredData } from './SEOHead';
 
 export default function ContactSection() {
+  const [email, setEmail] = useState('');
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validation
+    if (!email.trim()) {
+      toast.error('Veuillez entrer votre adresse email');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Veuillez entrer une adresse email valide');
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        const response = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Erreur lors de l\'envoi');
+        }
+
+        toast.success('🎉 Ebook envoyé ! Vérifiez votre boîte email (et vos spams)');
+        setEmail('');
+      } catch (error) {
+        console.error('Erreur:', error);
+        toast.error('Erreur lors de l\'envoi. Veuillez réessayer.');
+      }
+    });
+  };
+
   return (
 
     <>
@@ -65,18 +112,35 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="space-y-3 sm:space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <input
                 type="email"
                 placeholder="Votre adresse email"
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gray-700 border border-gray-600 rounded-full text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:border-[#fe1556] focus:ring-2 focus:ring-[#fe1556]/20 transition-all duration-300 hover:border-gray-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isPending}
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gray-700 border border-gray-600 rounded-full text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:border-[#fe1556] focus:ring-2 focus:ring-[#fe1556]/20 transition-all duration-300 hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
               />
 
-              <button className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25">
-                <span className="block sm:hidden">Je reçois mon ebook gratuit</span>
-                <span className="hidden sm:block">Je reçois mon ebook et je rejoins le mouvement</span>
+              <button 
+                type="submit"
+                disabled={isPending}
+                className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-[#fe1556] hover:bg-[#e6134d] text-white rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#fe1556]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#fe1556]"
+              >
+                {isPending ? (
+                  <span className="flex items-center justify-center">
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
+                    <span className="block sm:hidden">Envoi en cours...</span>
+                    <span className="hidden sm:block">Envoi de votre ebook en cours...</span>
+                  </span>
+                ) : (
+                  <>
+                    <span className="block sm:hidden">Je reçois mon ebook gratuit</span>
+                    <span className="hidden sm:block">Je reçois mon ebook et je rejoins le mouvement</span>
+                  </>
+                )}
               </button>
-            </div>
+            </form>
 
             <div className="text-center mt-6 sm:mt-8">
               <p className="text-gray-300 font-medium bg-gray-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-gray-600 inline-block text-sm sm:text-base">
