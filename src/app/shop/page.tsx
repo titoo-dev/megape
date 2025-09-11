@@ -28,20 +28,54 @@ export default function ShopPage() {
       icon: Zap
     },
     {
-      id: 'cahier',
-      name: 'Cahier ECODIM',
-      description: 'Former la nouvelle génération... en s\'amusant',
-      longDescription: 'Le Cahier ECODIM est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, mais centré sur la Bible.',
+      id: 'cahier-petits',
+      name: 'Cahier ECODIM - Petits',
+      description: 'Pour les 4-6 ans... en s\'amusant',
+      longDescription: 'Le Cahier ECODIM Petits est spécialement conçu pour les tout-petits de 4 à 6 ans. Avec des activités simples et colorées, il transmet les valeurs chrétiennes de manière ludique et adaptée à leur âge.',
       price: 'Sur demande',
       image: '/images/child-book.jpg',
       category: 'Éducation',
       features: [
-        'Histoires inspirantes',
-        'Jeux et activités',
-        'Valeurs bibliques'
+        'Activités simples et colorées',
+        'Histoires adaptées aux petits',
+        'Illustrations attrayantes'
+      ],
+      gradient: 'from-green-500/20 to-emerald-500/20',
+      accentColor: '#10b981',
+      icon: Star
+    },
+    {
+      id: 'cahier-moyens',
+      name: 'Cahier ECODIM - Moyens',
+      description: 'Pour les 7-10 ans... en apprenant',
+      longDescription: 'Le Cahier ECODIM Moyens s\'adresse aux enfants de 7 à 10 ans. Il propose des exercices progressifs et des jeux éducatifs pour approfondir leur connaissance de la Bible tout en s\'amusant.',
+      price: 'Sur demande',
+      image: '/images/book_model_2.png',
+      category: 'Éducation',
+      features: [
+        'Exercices progressifs',
+        'Jeux éducatifs variés',
+        'Réflexions adaptées'
       ],
       gradient: 'from-yellow-500/20 to-orange-500/20',
       accentColor: '#f59e0b',
+      icon: Star
+    },
+    {
+      id: 'cahier-grands',
+      name: 'Cahier ECODIM - Grands',
+      description: 'Pour les 11-14 ans... en grandissant',
+      longDescription: 'Le Cahier ECODIM Grands est destiné aux pré-adolescents de 11 à 14 ans. Il propose des défis plus complexes et des réflexions profondes pour les accompagner dans leur croissance spirituelle.',
+      price: 'Sur demande',
+      image: '/images/child-book.jpg',
+      category: 'Éducation',
+      features: [
+        'Défis complexes',
+        'Réflexions approfondies',
+        'Préparation à l\'adolescence'
+      ],
+      gradient: 'from-purple-500/20 to-indigo-500/20',
+      accentColor: '#8b5cf6',
       icon: Star
     }
   ];
@@ -62,7 +96,7 @@ export default function ShopPage() {
               <span>Retour à l'accueil</span>
             </Link>
             <Badge variant="outline" className="border-[#fe1556]/30 text-[#fe1556]">
-              2 produits
+              4 produits
             </Badge>
           </div>
           

@@ -95,19 +95,54 @@ const productsData: { [key: string]: ProductData } = {
             'Origine': 'Fabriqué avec soin'
         }
     },
-    cahier: {
-        id: 'cahier',
-        name: 'Cahier ECODIM',
-        description: 'Former la nouvelle génération... en s\'amusant',
-        longDescription: 'Le Cahier ECODIM est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, mais centré sur la Bible, il mêle apprentissage et jeux pour que les enfants grandissent dans la foi avec joie. Disponible en trois éditions adaptées à différents âges.',
+    'cahier-petits': {
+        id: 'cahier-petits',
+        name: 'Cahier ECODIM - Petits',
+        description: 'Pour les 4-6 ans... en s\'amusant',
+        longDescription: 'Le Cahier ECODIM Petits est spécialement conçu pour les tout-petits de 4 à 6 ans. Avec des activités simples et colorées, il transmet les valeurs chrétiennes de manière ludique et adaptée à leur âge.',
         price: 'Sur demande',
         category: 'Éducation',
         features: [
-            'Histoires inspirantes',
-            'Jeux et activités',
-            'Valeurs bibliques',
-            'Illustrations colorées',
+            'Activités simples et colorées',
+            'Histoires adaptées aux petits',
+            'Illustrations attrayantes',
+            'Jeux ludiques',
+            'Apprentissage progressif',
+            'Guide pour parents'
+        ],
+        gradient: 'from-green-500/20 to-emerald-500/20',
+        accentColor: '#10b981',
+        icon: Star,
+        models: [
+            {
+                id: 'standard',
+                name: 'Édition Standard',
+                image: '/images/child-book.jpg',
+                description: 'Version complète avec toutes les activités pour les 4-6 ans'
+            }
+        ],
+        specifications: {
+            'Pages': '48 pages couleur',
+            'Format': 'A4 (21 x 29,7 cm)',
+            'Papier': 'Papier écologique 120g',
+            'Reliure': 'Spirale pour faciliter l\'usage',
+            'Âge': '4-6 ans',
+            'Langue': 'Français'
+        }
+    },
+    'cahier-moyens': {
+        id: 'cahier-moyens',
+        name: 'Cahier ECODIM - Moyens',
+        description: 'Pour les 7-10 ans... en apprenant',
+        longDescription: 'Le Cahier ECODIM Moyens s\'adresse aux enfants de 7 à 10 ans. Il propose des exercices progressifs et des jeux éducatifs pour approfondir leur connaissance de la Bible tout en s\'amusant.',
+        price: 'Sur demande',
+        category: 'Éducation',
+        features: [
             'Exercices progressifs',
+            'Jeux éducatifs variés',
+            'Réflexions adaptées',
+            'Histoires captivantes',
+            'Activités créatives',
             'Guide pour parents'
         ],
         gradient: 'from-yellow-500/20 to-orange-500/20',
@@ -115,22 +150,10 @@ const productsData: { [key: string]: ProductData } = {
         icon: Star,
         models: [
             {
-                id: 'petits',
-                name: 'Édition Petits (4-6 ans)',
-                image: '/images/child-book.jpg',
-                description: 'Conçu pour les tout-petits avec des activités simples et colorées'
-            },
-            {
-                id: 'moyens',
-                name: 'Édition Moyens (7-10 ans)',
+                id: 'standard',
+                name: 'Édition Standard',
                 image: '/images/book_model_2.png',
-                description: 'Pour les enfants d\'âge scolaire avec plus d\'exercices et de réflexion'
-            },
-            {
-                id: 'grands',
-                name: 'Édition Grands (11-14 ans)',
-                image: '/images/child-book.jpg',
-                description: 'Version avancée pour les pré-adolescents avec des défis plus complexes'
+                description: 'Version complète avec exercices et jeux pour les 7-10 ans'
             }
         ],
         specifications: {
@@ -138,7 +161,42 @@ const productsData: { [key: string]: ProductData } = {
             'Format': 'A4 (21 x 29,7 cm)',
             'Papier': 'Papier écologique 120g',
             'Reliure': 'Spirale pour faciliter l\'usage',
-            'Âge': 'Adapté selon l\'édition',
+            'Âge': '7-10 ans',
+            'Langue': 'Français'
+        }
+    },
+    'cahier-grands': {
+        id: 'cahier-grands',
+        name: 'Cahier ECODIM - Grands',
+        description: 'Pour les 11-14 ans... en grandissant',
+        longDescription: 'Le Cahier ECODIM Grands est destiné aux pré-adolescents de 11 à 14 ans. Il propose des défis plus complexes et des réflexions profondes pour les accompagner dans leur croissance spirituelle.',
+        price: 'Sur demande',
+        category: 'Éducation',
+        features: [
+            'Défis complexes',
+            'Réflexions approfondies',
+            'Préparation à l\'adolescence',
+            'Questions existentielles',
+            'Projets créatifs',
+            'Guide pour parents'
+        ],
+        gradient: 'from-purple-500/20 to-indigo-500/20',
+        accentColor: '#8b5cf6',
+        icon: Star,
+        models: [
+            {
+                id: 'standard',
+                name: 'Édition Standard',
+                image: '/images/child-book.jpg',
+                description: 'Version complète avec défis et réflexions pour les 11-14 ans'
+            }
+        ],
+        specifications: {
+            'Pages': '80 pages couleur',
+            'Format': 'A4 (21 x 29,7 cm)',
+            'Papier': 'Papier écologique 120g',
+            'Reliure': 'Spirale pour faciliter l\'usage',
+            'Âge': '11-14 ans',
             'Langue': 'Français'
         }
     }
