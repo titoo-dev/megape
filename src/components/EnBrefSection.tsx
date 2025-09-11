@@ -3,13 +3,12 @@
 import { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { Heart, Zap, Shield, Users, Book, Mic, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Heart, Zap, Shield, Users, Book, Mic } from 'lucide-react';
 
 export default function EnBrefSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const autoScrollTween = useRef<gsap.core.Tween | null>(null);
-  const userInteracted = useRef(false);
 
   // Données des cartes pour MAGAPE
   const cards = [
@@ -76,12 +75,7 @@ export default function EnBrefSection() {
       return;
     }
 
-    // Check if screen is mobile or small (disable auto scroll on mobile)
-    const isMobileOrSmall = typeof window !== 'undefined' && window.innerWidth < 768;
-
-    if (isMobileOrSmall) {
-      return;
-    }
+    // Auto scroll is now enabled on all devices
 
     // Configuration du carrousel infini avec technique de repositionnement - Responsive
     if (trackRef.current) {
@@ -100,9 +94,6 @@ export default function EnBrefSection() {
 
       // Fonction pour créer l'animation auto-scroll
       const createAutoScroll = () => {
-        if (userInteracted.current) return;
-        if (isMobileOrSmall) return;
-        
         autoScrollTween.current = gsap.to(trackRef.current, {
           x: -singleSetWidth,
           duration: 20,
@@ -126,92 +117,11 @@ export default function EnBrefSection() {
     };
   }, []);
 
-  const handleUserInteraction = () => {
-    userInteracted.current = true;
-    autoScrollTween.current?.kill();
-  };
-
-  const scrollLeft = () => {
-    if (!trackRef.current) return;
-    
-    handleUserInteraction();
-    
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-    const isTablet = typeof window !== 'undefined' && window.innerWidth < 768;
-    
-    const cardWidth = isMobile ? 288 : 320;
-    const gap = isMobile ? 16 : isTablet ? 24 : 32;
-    const actualCardWidth = cardWidth + gap;
-    const singleSetWidth = cards.length * actualCardWidth;
-    
-    const currentX = gsap.getProperty(trackRef.current, "x") as number;
-    let newX = currentX + actualCardWidth;
-    
-    // Handle wrap-around
-    if (newX > 0) {
-      newX = -singleSetWidth + actualCardWidth;
-    }
-    
-    gsap.to(trackRef.current, {
-      x: newX,
-      duration: 0.6,
-      ease: "power2.out"
-    });
-  };
-
-  const scrollRight = () => {
-    if (!trackRef.current) return;
-    
-    handleUserInteraction();
-    
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-    const isTablet = typeof window !== 'undefined' && window.innerWidth < 768;
-    
-    const cardWidth = isMobile ? 288 : 320;
-    const gap = isMobile ? 16 : isTablet ? 24 : 32;
-    const actualCardWidth = cardWidth + gap;
-    const singleSetWidth = cards.length * actualCardWidth;
-    
-    const currentX = gsap.getProperty(trackRef.current, "x") as number;
-    let newX = currentX - actualCardWidth;
-    
-    // Handle wrap-around
-    if (newX <= -singleSetWidth) {
-      newX = 0;
-    }
-    
-    gsap.to(trackRef.current, {
-      x: newX,
-      duration: 0.6,
-      ease: "power2.out"
-    });
-  };
 
   return (
     <section ref={sectionRef} className="relative py-12 sm:py-16 md:py-20 bg-gray-900 overflow-hidden">
 
       <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* En-tête */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 sm:mb-12 md:mb-16 gap-4 sm:gap-0">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center sm:text-left">
-            En bref
-          </h2>
-          
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <button 
-              onClick={scrollLeft}
-              className="p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
-            </button>
-            <button 
-              onClick={scrollRight}
-              className="p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors duration-300 group"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
-            </button>
-          </div>
-        </div>
 
         {/* Carrousel */}
         <div className="relative overflow-hidden">
@@ -266,13 +176,6 @@ export default function EnBrefSection() {
               );
             })}
           </div>
-        </div>
-
-        {/* Indicateur de scroll */}
-        <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-400 text-xs sm:text-sm px-4">
-            <span className="hidden sm:inline">Défilement automatique infini • </span>Utilisez les flèches pour naviguer
-          </p>
         </div>
       </div>
     </section>
