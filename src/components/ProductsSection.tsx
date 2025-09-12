@@ -122,7 +122,7 @@ export default function ProductsSection() {
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
               <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 relative">
                 <Image
-                  src="/images/logo_2.jpg"
+                  src="/images/logo_2.png"
                   alt="Logo Christ Roi des Rois"
                   fill
                   className="object-contain"
@@ -135,7 +135,7 @@ export default function ProductsSection() {
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
               <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 relative">
                 <Image
-                  src="/images/logo_3.jpg"
+                  src="/images/logo_3.png"
                   alt="Logo Roi des Rois Christ"
                   fill
                   className="object-contain"

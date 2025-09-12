@@ -21,7 +21,7 @@ export default function CahierSection() {
           "ressources pédagogiques",
           "valeurs chrétiennes"
         ]}
-        image="/images/child-book.jpg"
+        image="/images/book_model_2.png"
         url="https://magape.org/#cahier"
         type="product"
         structuredData={structuredData.book}
@@ -57,7 +57,7 @@ export default function CahierSection() {
 
                 <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
                   <Image
-                    src="/images/child-book.jpg"
+                    src="/images/book_model_2.png"
                     alt="Cahier ECODIM"
                     width={500}
                     height={600}
