@@ -276,9 +276,15 @@ export default function ProductDetailPage() {
             {/* Header */}
             <header className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/5 via-transparent to-[#32a3ff]/5"></div>
-                <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex items-center justify-end">
-                        <Badge variant="outline" className="border-gray-600 text-gray-300">
+                <div className="relative container mx-auto max-w-7xl px-3 sm:px-4 lg:px-8 py-4 sm:py-6">
+                    <div className="flex items-center justify-between">
+                        <Link href="/" scroll={false}>
+                            <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
+                                <ArrowLeft className="w-4 h-4 mr-1" />
+                                Retour
+                            </Button>
+                        </Link>
+                        <Badge variant="outline" className="border-gray-600 text-gray-300 text-xs sm:text-sm">
                             {product.category}
                         </Badge>
                     </div>
@@ -286,17 +292,17 @@ export default function ProductDetailPage() {
             </header>
 
             {/* Main Content */}
-            <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            <main className="container mx-auto max-w-7xl px-3 sm:px-4 lg:px-8 py-4 sm:py-8 lg:py-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16">
                     {/* Left Column - Images */}
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                         {/* Main Image Carousel */}
                         <div className="relative">
                             <Carousel className="w-full" setApi={setCarouselApi}>
                                 <CarouselContent>
                                     {product.models.map((model, index) => (
                                         <CarouselItem key={model.id}>
-                                            <div className="relative aspect-square bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+                                            <div className="relative aspect-square bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                                                 <Image
                                                     src={model.image}
                                                     alt={model.name}
@@ -307,9 +313,9 @@ export default function ProductDetailPage() {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 
                                                 {/* Model Info Overlay */}
-                                                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                                    <h3 className="text-white font-semibold text-lg mb-1">{model.name}</h3>
-                                                    <p className="text-gray-300 text-sm">{model.description}</p>
+                                                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                                    <h3 className="text-white font-semibold text-sm sm:text-lg mb-1">{model.name}</h3>
+                                                    <p className="text-gray-300 text-xs sm:text-sm">{model.description}</p>
                                                 </div>
                                             </div>
                                         </CarouselItem>
@@ -317,8 +323,8 @@ export default function ProductDetailPage() {
                                 </CarouselContent>
                                 {product.models.length > 1 && (
                                     <>
-                                        <CarouselPrevious className="left-4 bg-black/50 border-gray-600 text-white hover:bg-black/70" />
-                                        <CarouselNext className="right-4 bg-black/50 border-gray-600 text-white hover:bg-black/70" />
+                                        <CarouselPrevious className="left-2 sm:left-4 bg-black/50 border-gray-600 text-white hover:bg-black/70 w-8 h-8 sm:w-10 sm:h-10" />
+                                        <CarouselNext className="right-2 sm:right-4 bg-black/50 border-gray-600 text-white hover:bg-black/70 w-8 h-8 sm:w-10 sm:h-10" />
                                     </>
                                 )}
                             </Carousel>
@@ -326,12 +332,12 @@ export default function ProductDetailPage() {
 
                         {/* Model Selection Thumbnails */}
                         {product.models.length > 1 && (
-                            <div className="flex gap-3 justify-center">
+                            <div className="flex gap-2 sm:gap-3 justify-center overflow-x-auto pb-2">
                                 {product.models.map((model, index) => (
                                     <button
                                         key={model.id}
                                         onClick={() => handleModelSelect(index)}
-                                        className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${selectedModel === index
+                                        className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 flex-shrink-0 ${selectedModel === index
                                                 ? 'border-white shadow-lg scale-105'
                                                 : 'border-gray-600 hover:border-gray-500'
                                             }`}
@@ -349,7 +355,7 @@ export default function ProductDetailPage() {
                     </div>
 
                     {/* Right Column - Product Info */}
-                    <div className="space-y-8">
+                    <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                         {/* Product Header */}
                         <div>
                             <div className="flex items-center gap-3 mb-4">
@@ -372,11 +378,11 @@ export default function ProductDetailPage() {
                                 </div>
                             </div>
 
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
                                 {product.name}
                             </h1>
-                            <p className="text-xl text-gray-300 mb-4">{product.description}</p>
-                            <p className="text-gray-400 leading-relaxed">{product.longDescription}</p>
+                            <p className="text-lg sm:text-xl text-gray-300 mb-3 sm:mb-4">{product.description}</p>
+                            <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{product.longDescription}</p>
                         </div>
 
                         {/* Size Selection (for maillots only) */}
@@ -389,12 +395,12 @@ export default function ProductDetailPage() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
                                         {product.sizes.map((size) => (
                                             <button
                                                 key={size}
                                                 onClick={() => setSelectedSize(size)}
-                                                className={`py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${selectedSize === size
+                                                className={`py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${selectedSize === size
                                                         ? 'text-white shadow-lg transform scale-105'
                                                         : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
                                                     }`}
@@ -420,24 +426,24 @@ export default function ProductDetailPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-3 sm:gap-4 justify-center sm:justify-start">
                                     <Button
                                         variant="outline"
                                         size="icon"
                                         onClick={decrementQuantity}
                                         disabled={quantity <= 1}
-                                        className="px-4 py-3 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
+                                        className="w-10 h-10 sm:w-12 sm:h-12 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
                                     >
                                         <Minus className="w-4 h-4" />
                                     </Button>
-                                    <span className="text-2xl font-bold text-white min-w-[3rem] text-center">
+                                    <span className="text-xl sm:text-2xl font-bold text-white min-w-[2.5rem] sm:min-w-[3rem] text-center">
                                         {quantity}
                                     </span>
                                     <Button
                                         variant="outline"
                                         size="icon"
                                         onClick={incrementQuantity}
-                                        className="px-4 py-3 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
+                                        className="w-10 h-10 sm:w-12 sm:h-12 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
                                     >
                                         <Plus className="w-4 h-4" />
                                     </Button>
@@ -447,15 +453,15 @@ export default function ProductDetailPage() {
 
                         {/* Price and CTA */}
                         <Card className={`bg-gradient-to-br ${product.gradient} border-gray-700`}>
-                            <CardContent className="p-6">
-                                <div className="flex items-center justify-between mb-6">
+                            <CardContent className="p-4 sm:p-6">
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
                                     <div>
-                                        <p className="text-gray-400 text-sm mb-1">Prix</p>
-                                        <span className="text-3xl font-bold text-white">{product.price}</span>
+                                        <p className="text-gray-400 text-xs sm:text-sm mb-1">Prix</p>
+                                        <span className="text-2xl sm:text-3xl font-bold text-white">{product.price}</span>
                                     </div>
-                                    <div className="text-right">
-                                        <p className="text-gray-400 text-sm mb-1">Modèle sélectionné</p>
-                                        <span className="text-white font-semibold">
+                                    <div className="text-left sm:text-right">
+                                        <p className="text-gray-400 text-xs sm:text-sm mb-1">Modèle sélectionné</p>
+                                        <span className="text-white font-semibold text-sm sm:text-base">
                                             {product.models[selectedModel]?.name}
                                         </span>
                                     </div>
@@ -464,7 +470,7 @@ export default function ProductDetailPage() {
                                 <Button
                                     onClick={handleContactClick}
                                     disabled={isPending || (product.sizes && !selectedSize)}
-                                    className="w-full py-4 text-white font-semibold rounded-xl text-lg transition-all duration-300 hover:shadow-xl disabled:opacity-50"
+                                    className="w-full py-3 sm:py-4 text-white font-semibold rounded-xl text-base sm:text-lg transition-all duration-300 hover:shadow-xl disabled:opacity-50"
                                     style={{
                                         backgroundColor: product.accentColor,
                                         boxShadow: `0 4px 20px ${product.accentColor}40`
@@ -493,19 +499,19 @@ export default function ProductDetailPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                     {product.features.map((feature, index) => (
-                                        <div key={index} className="flex items-center space-x-3">
+                                        <div key={index} className="flex items-start sm:items-center space-x-3">
                                             <div
-                                                className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+                                                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-0"
                                                 style={{ backgroundColor: `${product.accentColor}20` }}
                                             >
                                                 <Check
-                                                    className="w-4 h-4"
+                                                    className="w-3 h-3 sm:w-4 sm:h-4"
                                                     style={{ color: product.accentColor }}
                                                 />
                                             </div>
-                                            <span className="text-gray-300">{feature}</span>
+                                            <span className="text-gray-300 text-sm sm:text-base">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -522,11 +528,11 @@ export default function ProductDetailPage() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="space-y-3">
+                                    <div className="space-y-2 sm:space-y-3">
                                         {Object.entries(product.specifications).map(([key, value]) => (
-                                            <div key={key} className="flex justify-between items-center py-2 border-b border-gray-700 last:border-b-0">
-                                                <span className="text-gray-400 font-medium">{key}</span>
-                                                <span className="text-white">{value}</span>
+                                            <div key={key} className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 last:border-b-0 gap-1 sm:gap-0">
+                                                <span className="text-gray-400 font-medium text-sm sm:text-base">{key}</span>
+                                                <span className="text-white text-sm sm:text-base">{value}</span>
                                             </div>
                                         ))}
                                     </div>
