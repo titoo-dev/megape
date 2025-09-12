@@ -277,14 +277,7 @@ export default function ProductDetailPage() {
             <header className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/5 via-transparent to-[#32a3ff]/5"></div>
                 <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex items-center justify-between">
-                        <Link
-                            href="/shop"
-                            className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-                        >
-                            <ArrowLeft className="w-5 h-5" />
-                            <span>Retour à la boutique</span>
-                        </Link>
+                    <div className="flex items-center justify-end">
                         <Badge variant="outline" className="border-gray-600 text-gray-300">
                             {product.category}
                         </Badge>

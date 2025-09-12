@@ -87,14 +87,7 @@ export default function ShopPage() {
       <header className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700">
         <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/5 via-transparent to-[#32a3ff]/5"></div>
         <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          <div className="flex items-center justify-between mb-6">
-            <Link 
-              href="/" 
-              className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Retour à l'accueil</span>
-            </Link>
+          <div className="flex items-center justify-end mb-6">
             <Badge variant="outline" className="border-[#fe1556]/30 text-[#fe1556]">
               4 produits
             </Badge>
