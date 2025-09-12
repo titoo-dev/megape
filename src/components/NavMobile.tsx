@@ -33,7 +33,7 @@ export default function NavMobile({ scrolled }: NavMobileProps) {
       // Handle anchor links for same page
       const element = document.querySelector(item.href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: 'auto' });
       }
     }
   };
