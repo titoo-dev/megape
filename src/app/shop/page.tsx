@@ -219,7 +219,7 @@ export default function ShopPage() {
                   </div>
 
                   {/* Price and CTA */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-4">
                     <div>
                       <span className="text-2xl font-bold text-white">{product.price}</span>
                     </div>

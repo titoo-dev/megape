@@ -15,7 +15,8 @@ import {
     Book,
     Users,
     Palette,
-    Shield
+    Shield,
+    CreditCard
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -29,6 +30,7 @@ import {
     type CarouselApi,
 } from '@/components/ui/carousel';
 import { toast } from 'sonner';
+import { createCheckoutSession } from '@/lib/actions';
 
 interface ProductModel {
     id: string;
@@ -44,6 +46,7 @@ interface ProductData {
     longDescription: string;
     price: string;
     category: string;
+    stripeProductId: string;
     features: string[];
     gradient: string;
     accentColor: string;
@@ -73,6 +76,7 @@ const productsData: { [key: string]: ProductData } = {
         accentColor: '#fe1556',
         icon: Zap,
         sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        stripeProductId: 'prod_maillot_classique',
         models: [
             {
                 id: 'standard',
@@ -108,6 +112,7 @@ const productsData: { [key: string]: ProductData } = {
         accentColor: '#3b82f6',
         icon: Zap,
         sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        stripeProductId: 'prod_maillot_premium',
         models: [
             {
                 id: 'standard',
@@ -142,6 +147,7 @@ const productsData: { [key: string]: ProductData } = {
         gradient: 'from-green-500/20 to-emerald-500/20',
         accentColor: '#10b981',
         icon: Star,
+        stripeProductId: 'prod_cahier_petits',
         models: [
             {
                 id: 'standard',
@@ -177,6 +183,7 @@ const productsData: { [key: string]: ProductData } = {
         gradient: 'from-yellow-500/20 to-orange-500/20',
         accentColor: '#f59e0b',
         icon: Star,
+        stripeProductId: 'prod_cahier_moyens',
         models: [
             {
                 id: 'standard',
@@ -212,6 +219,7 @@ const productsData: { [key: string]: ProductData } = {
         gradient: 'from-purple-500/20 to-indigo-500/20',
         accentColor: '#8b5cf6',
         icon: Star,
+        stripeProductId: 'prod_cahier_grands',
         models: [
             {
                 id: 'standard',
@@ -237,6 +245,7 @@ export default function ProductDetailPage() {
     const id = params.id as string;
 
     const [isPending, startTransition] = useTransition();
+    const [isCheckoutPending, startCheckoutTransition] = useTransition();
     const [selectedModel, setSelectedModel] = useState(0);
     const [selectedSize, setSelectedSize] = useState('');
     const [quantity, setQuantity] = useState(1);
@@ -271,6 +280,31 @@ export default function ProductDetailPage() {
             setTimeout(() => {
                 window.location.href = '/#contact';
             }, 1500);
+        });
+    };
+
+    const handleCheckoutClick = async () => {
+        startCheckoutTransition(async () => {
+            try {
+                const productInfo = {
+                    id: product.id,
+                    name: product.name,
+                    model: product.models[selectedModel]?.name,
+                    size: selectedSize,
+                    quantity: quantity
+                };
+
+                toast.loading('Redirection vers le paiement...', {
+                    description: `${productInfo.name} - ${productInfo.model}`
+                });
+
+                await createCheckoutSession(productInfo);
+            } catch (error) {
+                console.error('Checkout error:', error);
+                toast.error('Erreur lors de la création de la session de paiement', {
+                    description: 'Veuillez réessayer ou nous contacter si le problème persiste.'
+                });
+            }
         });
     };
 
@@ -501,26 +535,28 @@ export default function ProductDetailPage() {
                                     </div>
                                 </div>
 
-                                <Button
-                                    onClick={handleContactClick}
-                                    disabled={isPending || (product.sizes && !selectedSize)}
-                                    className="w-full py-3 sm:py-4 text-white font-semibold rounded-xl text-base sm:text-lg transition-all duration-300 hover:shadow-xl disabled:opacity-50"
-                                    style={{
-                                        backgroundColor: product.accentColor,
-                                        boxShadow: `0 4px 20px ${product.accentColor}40`
-                                    }}
-                                >
-                                    {isPending ? (
-                                        'Redirection en cours...'
-                                    ) : product.sizes && !selectedSize ? (
-                                        'Sélectionnez une taille'
-                                    ) : (
-                                        <>
-                                            Demander un devis
-                                            <Heart className="ml-2 w-5 h-5" />
-                                        </>
-                                    )}
-                                </Button>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <Button
+                                        onClick={handleCheckoutClick}
+                                        disabled={isCheckoutPending || (product.sizes && !selectedSize)}
+                                        className="py-4 text-white font-semibold rounded-xl text-lg transition-all duration-300 hover:shadow-xl disabled:opacity-50"
+                                        style={{
+                                            backgroundColor: product.accentColor,
+                                            boxShadow: `0 4px 20px ${product.accentColor}40`
+                                        }}
+                                    >
+                                        {isCheckoutPending ? (
+                                            'Redirection...'
+                                        ) : product.sizes && !selectedSize ? (
+                                            'Sélectionnez une taille'
+                                        ) : (
+                                            <>
+                                                <CreditCard className="mr-2 w-5 h-5" />
+                                                Acheter maintenant
+                                            </>
+                                        )}
+                                    </Button>
+                                </div>
                             </CardContent>
                         </Card>
 
