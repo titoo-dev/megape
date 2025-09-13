@@ -109,7 +109,7 @@ export default function ShopPage() {
         <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="flex items-center justify-between mb-6">
             <Button
-              variant="ghost"
+              variant="link"
               size="sm"
               className="text-gray-300 hover:text-white"
               onClick={() => router.back()}
@@ -147,7 +147,13 @@ export default function ShopPage() {
             return (
               <Card
                 key={product.id}
-                className={`group relative bg-gradient-to-br ${product.gradient} border-gray-700 hover:border-gray-600 transition-all duration-500 overflow-hidden backdrop-blur-sm hover:shadow-2xl`}
+                className={`group relative bg-gradient-to-br ${product.gradient} border-gray-700 hover:border-gray-600 transition-all duration-500 overflow-hidden backdrop-blur-sm hover:shadow-2xl cursor-pointer md:cursor-default`}
+                onClick={() => {
+                  // Only make clickable on mobile/tablet (below md breakpoint)
+                  if (window.innerWidth < 768) {
+                    router.push(`/shop/${product.id}`);
+                  }
+                }}
               >
 
                 <CardHeader className="relative z-10">
@@ -218,7 +224,7 @@ export default function ShopPage() {
                       <span className="text-2xl font-bold text-white">{product.price}</span>
                     </div>
                     <div className="flex gap-3">
-                      <Link href={`/shop/${product.id}`}>
+                      <Link href={`/shop/${product.id}`} className="hidden md:block">
                         <Button
                           variant="outline"
                           className="px-4 py-3 border-gray-600 text-white bg-gray-700 rounded-full cursor-pointer"
@@ -226,6 +232,9 @@ export default function ShopPage() {
                           Voir détails
                         </Button>
                       </Link>
+                      <div className="md:hidden text-right">
+                        <p className="text-gray-400 text-sm">Tapez pour voir les détails</p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

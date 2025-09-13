@@ -310,7 +310,7 @@ export default function ProductDetailPage() {
                 <div className="relative container mx-auto max-w-7xl px-3 sm:px-4 lg:px-8 py-4 sm:py-6">
                     <div className="flex items-center justify-between">
                         <Button 
-                            variant="ghost" 
+                            variant="link" 
                             size="sm" 
                             className="text-gray-300 hover:text-white"
                             onClick={() => router.back()}
