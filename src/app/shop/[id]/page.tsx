@@ -54,17 +54,17 @@ interface ProductData {
 }
 
 const productsData: { [key: string]: ProductData } = {
-    maillot: {
-        id: 'maillot',
-        name: 'Maillot MAGAPE',
-        description: 'Portez vos couleurs, faites partie de l\'équipe',
-        longDescription: 'Le Maillot MAGAPE est bien plus qu\'un vêtement : c\'est une bannière d\'unité pour dire au monde : "Nous sommes une seule famille en Christ". Disponible en deux modèles exclusifs, chacun conçu pour exprimer votre appartenance à la communauté MAGAPE.',
+    'maillot-classique': {
+        id: 'maillot-classique',
+        name: 'Maillot MAGAPE - Classique',
+        description: 'Le design original aux couleurs emblématiques',
+        longDescription: 'Le Maillot MAGAPE Classique arbore le design original avec les couleurs emblématiques de la communauté. C\'est une bannière d\'unité pour dire au monde : "Nous sommes une seule famille en Christ".',
         price: 'Sur demande',
         category: 'Vêtement',
         features: [
-            'Design aux couleurs MAGAPE',
+            'Design original MAGAPE',
+            'Couleurs emblématiques',
             'Symbole fédérateur',
-            'Personnalisation disponible',
             'Matière respirante',
             'Coupe moderne',
             'Impression haute qualité'
@@ -75,16 +75,10 @@ const productsData: { [key: string]: ProductData } = {
         sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
         models: [
             {
-                id: 'classic',
-                name: 'Modèle Classique',
+                id: 'standard',
+                name: 'Édition Standard',
                 image: '/image-1.png',
                 description: 'Le design original MAGAPE avec les couleurs emblématiques'
-            },
-            {
-                id: 'premium',
-                name: 'Modèle Premium',
-                image: '/images/maillot_model_2.jpg',
-                description: 'Version premium avec finitions spéciales et détails brodés'
             }
         ],
         specifications: {
@@ -92,7 +86,42 @@ const productsData: { [key: string]: ProductData } = {
             'Coupe': 'Moderne et ajustée',
             'Entretien': 'Lavage machine 30°C',
             'Impression': 'Sérigraphie haute qualité',
-            'Origine': 'Fabriqué avec soin'
+            'Style': 'Design original'
+        }
+    },
+    'maillot-premium': {
+        id: 'maillot-premium',
+        name: 'Maillot MAGAPE - Premium',
+        description: 'Version premium avec finitions spéciales',
+        longDescription: 'Le Maillot MAGAPE Premium offre une version haut de gamme avec des finitions spéciales et des détails brodés. Pour ceux qui veulent exprimer leur appartenance avec élégance.',
+        price: 'Sur demande',
+        category: 'Vêtement',
+        features: [
+            'Finitions premium',
+            'Détails brodés',
+            'Qualité supérieure',
+            'Matière haut de gamme',
+            'Coupe ajustée',
+            'Broderie personnalisée'
+        ],
+        gradient: 'from-blue-600/20 to-purple-600/20',
+        accentColor: '#3b82f6',
+        icon: Zap,
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        models: [
+            {
+                id: 'standard',
+                name: 'Édition Premium',
+                image: '/images/maillot_model_2.jpg',
+                description: 'Version premium avec finitions spéciales et détails brodés'
+            }
+        ],
+        specifications: {
+            'Matière': '100% Polyester premium',
+            'Coupe': 'Ajustée et moderne',
+            'Entretien': 'Lavage machine 30°C',
+            'Finitions': 'Broderie haute qualité',
+            'Style': 'Premium avec détails'
         }
     },
     'cahier-petits': {

@@ -11,20 +11,37 @@ export default function ShopPage() {
 
   const products = [
     {
-      id: 'maillot',
-      name: 'Maillot MAGAPE',
-      description: 'Portez vos couleurs, faites partie de l\'équipe',
-      longDescription: 'Le Maillot MAGAPE est bien plus qu\'un vêtement : c\'est une bannière d\'unité pour dire au monde : "Nous sommes une seule famille en Christ".',
+      id: 'maillot-classique',
+      name: 'Maillot MAGAPE - Classique',
+      description: 'Le design original aux couleurs emblématiques',
+      longDescription: 'Le Maillot MAGAPE Classique arbore le design original avec les couleurs emblématiques de la communauté. C\'est une bannière d\'unité pour dire au monde : "Nous sommes une seule famille en Christ".',
       price: 'Sur demande',
       image: '/image-1.png',
       category: 'Vêtement',
       features: [
-        'Design aux couleurs MAGAPE',
-        'Symbole fédérateur',
-        'Personnalisation disponible'
+        'Design original MAGAPE',
+        'Couleurs emblématiques',
+        'Symbole fédérateur'
       ],
       gradient: 'from-[#fe1556]/20 to-[#32a3ff]/20',
       accentColor: '#fe1556',
+      icon: Zap
+    },
+    {
+      id: 'maillot-premium',
+      name: 'Maillot MAGAPE - Premium',
+      description: 'Version premium avec finitions spéciales',
+      longDescription: 'Le Maillot MAGAPE Premium offre une version haut de gamme avec des finitions spéciales et des détails brodés. Pour ceux qui veulent exprimer leur appartenance avec élégance.',
+      price: 'Sur demande',
+      image: '/images/maillot_model_2.jpg',
+      category: 'Vêtement',
+      features: [
+        'Finitions premium',
+        'Détails brodés',
+        'Qualité supérieure'
+      ],
+      gradient: 'from-blue-600/20 to-purple-600/20',
+      accentColor: '#3b82f6',
       icon: Zap
     },
     {
@@ -95,7 +112,7 @@ export default function ShopPage() {
               </Button>
             </Link>
             <Badge variant="outline" className="border-[#fe1556]/30 text-[#fe1556]">
-              4 produits
+              5 produits
             </Badge>
           </div>
 
