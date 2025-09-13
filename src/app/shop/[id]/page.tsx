@@ -2,7 +2,7 @@
 
 import { useTransition, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import {
     ArrowLeft,
     Star,
@@ -239,7 +239,6 @@ const productsData: { [key: string]: ProductData } = {
 
 export default function ProductDetailPage() {
     const params = useParams();
-    const router = useRouter();
 
     const id = params.id as string;
 
@@ -249,31 +248,13 @@ export default function ProductDetailPage() {
     const [selectedSize, setSelectedSize] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [carouselApi, setCarouselApi] = useState<CarouselApi>();
-    const [isLoading, setIsLoading] = useState(true);
+
+    const router = useRouter();
 
     const product = productsData[id];
 
-    // Handle loading and not found states
-    useEffect(() => {
-        if (id) {
-            setIsLoading(false);
-            if (!product) {
-                // Redirect to 404 or shop page instead of using notFound() in client component
-                router.replace('/shop');
-            }
-        }
-    }, [id, product, router]);
-
-    if (isLoading) {
-        return (
-            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-                <div className="text-white">Chargement...</div>
-            </div>
-        );
-    }
-
     if (!product) {
-        return null; // This will be handled by the useEffect redirect
+        notFound();
     }
 
     const IconComponent = product.icon;
