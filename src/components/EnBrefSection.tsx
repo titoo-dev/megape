@@ -96,7 +96,7 @@ export default function EnBrefSection() {
       const createAutoScroll = () => {
         autoScrollTween.current = gsap.to(trackRef.current, {
           x: -singleSetWidth,
-          duration: 20,
+          duration: 40,
           ease: "none",
           repeat: -1,
           onRepeat: () => {
