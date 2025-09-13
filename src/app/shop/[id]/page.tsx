@@ -3,7 +3,7 @@
 import { useTransition, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound, useParams } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import {
     ArrowLeft,
     Star,
@@ -242,6 +242,8 @@ export default function ProductDetailPage() {
     const [quantity, setQuantity] = useState(1);
     const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
+    const router = useRouter();
+
     const product = productsData[id];
 
     if (!product) {
@@ -307,12 +309,15 @@ export default function ProductDetailPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/5 via-transparent to-[#32a3ff]/5"></div>
                 <div className="relative container mx-auto max-w-7xl px-3 sm:px-4 lg:px-8 py-4 sm:py-6">
                     <div className="flex items-center justify-between">
-                        <Link href="/" scroll={false}>
-                            <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
-                                <ArrowLeft className="w-4 h-4 mr-1" />
-                                Retour
-                            </Button>
-                        </Link>
+                        <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="text-gray-300 hover:text-white"
+                            onClick={() => router.back()}
+                        >
+                            <ArrowLeft className="w-4 h-4 mr-1" />
+                            Retour
+                        </Button>
                         <Badge variant="outline" className="border-gray-600 text-gray-300 text-xs sm:text-sm">
                             {product.category}
                         </Badge>

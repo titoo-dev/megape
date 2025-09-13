@@ -82,7 +82,7 @@ export default function ProductsSection() {
               ref={imageRef}
               className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 transition-transform duration-75 ease-out"
             >
-              <Link href="/shop/maillot">
+              <Link href="/shop/maillot-classique">
                 <div className="relative w-full h-full bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group cursor-pointer">
                   <Image
                     src="/image-1.png"

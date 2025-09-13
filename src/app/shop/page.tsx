@@ -6,8 +6,11 @@ import { ArrowLeft, ShoppingBag, Star, Zap, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useRouter } from 'next/navigation';
 
 export default function ShopPage() {
+
+  const router = useRouter();
 
   const products = [
     {
@@ -105,12 +108,15 @@ export default function ShopPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#fe1556]/5 via-transparent to-[#32a3ff]/5"></div>
         <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="flex items-center justify-between mb-6">
-            <Link href="/" className="sm:hidden" scroll={false}>
-              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
-                <ArrowLeft className="w-4 h-4 mr-1" />
-                Retour
-              </Button>
-            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-300 hover:text-white"
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="w-4 h-4 mr-1" />
+              Retour
+            </Button>
             <Badge variant="outline" className="border-[#fe1556]/30 text-[#fe1556]">
               5 produits
             </Badge>
