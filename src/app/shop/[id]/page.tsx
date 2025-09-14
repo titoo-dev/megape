@@ -276,6 +276,9 @@ export default function ProductDetailPage() {
                 });
 
                 const checkoutUrl = await createCheckoutSession(productInfo);
+
+                // close loading toast
+                toast.dismiss();
                 
                 toast.success('Redirection vers le paiement...', {
                     description: 'Ouverture dans un nouvel onglet'
