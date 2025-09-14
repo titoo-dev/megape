@@ -28,7 +28,7 @@ import {
     type CarouselApi,
 } from '@/components/ui/carousel';
 import { toast } from 'sonner';
-import { createCheckoutSession } from '@/lib/actions';
+import { createCheckoutSession, createQuickCheckoutSession } from '@/lib/actions';
 
 interface ProductModel {
     id: string;
@@ -259,44 +259,30 @@ export default function ProductDetailPage() {
 
     const IconComponent = product.icon;
 
-    const handleContactClick = () => {
-        startTransition(() => {
-            const productInfo = {
-                product: product.name,
-                model: product.models[selectedModel]?.name,
-                size: selectedSize || 'Non applicable',
-                quantity: quantity
-            };
-
-            toast.success('Informations sauvegardées ! Redirection vers le formulaire de contact...', {
-                description: `${productInfo.product} - ${productInfo.model}`
-            });
-
-            // Store product info in localStorage for the contact form
-            localStorage.setItem('selectedProduct', JSON.stringify(productInfo));
-
-            setTimeout(() => {
-                window.location.href = '/#contact';
-            }, 1500);
-        });
-    };
 
     const handleCheckoutClick = async () => {
         startCheckoutTransition(async () => {
             try {
                 const productInfo = {
-                    id: product.id,
+                    stripeProductId: product.stripeProductId,
                     name: product.name,
                     model: product.models[selectedModel]?.name,
                     size: selectedSize,
                     quantity: quantity
                 };
 
-                toast.loading('Redirection vers le paiement...', {
+                toast.loading('Création de la session de paiement...', {
                     description: `${productInfo.name} - ${productInfo.model}`
                 });
 
-                await createCheckoutSession(productInfo);
+                const checkoutUrl = await createCheckoutSession(productInfo);
+                
+                toast.success('Redirection vers le paiement...', {
+                    description: 'Ouverture dans un nouvel onglet'
+                });
+
+                // Open checkout in new tab/window
+                window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
             } catch (error) {
                 console.error('Checkout error:', error);
                 toast.error('Erreur lors de la création de la session de paiement', {

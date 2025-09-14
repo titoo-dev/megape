@@ -1,97 +1,108 @@
 'use server';
 
 import { stripe } from './stripe';
-import { redirect } from 'next/navigation';
 
 interface ProductInfo {
-  id: string;
+  stripeProductId: string;
   name: string;
   model?: string;
   size?: string;
   quantity: number;
 }
 
-// Product configurations for Stripe
-const PRODUCT_CONFIGS = {
-  maillot: {
-    name: 'Maillot MAGAPE',
-    basePrice: 2500, // 25.00 EUR in cents
-    description: 'Portez vos couleurs, faites partie de l\'équipe'
+// Product configurations mapped by Stripe Product ID
+const STRIPE_PRODUCT_CONFIGS = {
+  'prod_maillot_classique': {
+    name: 'Maillot MAGAPE - Classique',
+    description: 'Le design original aux couleurs emblématiques',
+    priceId: 'price_1S61jeClluL5RGJZDgk9PYWI', // Main price ID for this product
+    image: '/image-1.png',
+    category: 'maillot'
   },
-  cahier: {
-    name: 'Cahier ECODIM',
-    basePrice: 1500, // 15.00 EUR in cents
-    description: 'Former la nouvelle génération... en s\'amusant'
+  'prod_maillot_premium': {
+    name: 'Maillot MAGAPE - Premium',
+    description: 'Version premium avec finitions spéciales',
+    priceId: 'price_1S61UbClluL5RGJZaqDbNEND', // Update with actual price ID
+    image: '/images/maillot_model_2.jpg',
+    category: 'maillot'
+  },
+  'prod_cahier_petits': {
+    name: 'Cahier ECODIM - Petits',
+    description: 'Pour les 4-6 ans... en s\'amusant',
+    priceId: 'price_1S61kYClluL5RGJZtNZ5kyPr', // Update with actual price ID
+    image: '/images/child-book.jpg',
+    category: 'cahier'
+  },
+  'prod_cahier_moyens': {
+    name: 'Cahier ECODIM - Moyens',
+    description: 'Pour les 7-10 ans... en apprenant',
+    priceId: 'price_1S77ziClluL5RGJZ0iyxnkKh', // Update with actual price ID
+    image: '/images/book_model_2.png',
+    category: 'cahier'
+  },
+  'prod_cahier_grands': {
+    name: 'Cahier ECODIM - Grands',
+    description: 'Pour les 11-14 ans... en grandissant',
+    priceId: 'price_1S61jeClluL5RGJZDgk9PYWI', // Update with actual price ID
+    image: '/images/child-book.jpg',
+    category: 'cahier'
   }
 };
 
-export async function createCheckoutSession(productInfo: ProductInfo, customerEmail?: string) {
+export async function createCheckoutSession(productInfo: ProductInfo, customerEmail?: string): Promise<string> {
   try {
-    const config = PRODUCT_CONFIGS[productInfo.id as keyof typeof PRODUCT_CONFIGS];
+    const config = STRIPE_PRODUCT_CONFIGS[productInfo.stripeProductId as keyof typeof STRIPE_PRODUCT_CONFIGS];
     
     if (!config) {
-      throw new Error(`Product configuration not found for ${productInfo.id}`);
-    }
-
-    // Create line item description with model and size info
-    let itemDescription = config.description;
-    if (productInfo.model) {
-      itemDescription += ` - ${productInfo.model}`;
-    }
-    if (productInfo.size) {
-      itemDescription += ` (Taille: ${productInfo.size})`;
+      throw new Error(`Product configuration not found for Stripe Product ID: ${productInfo.stripeProductId}`);
     }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price: 'price_1S61UbClluL5RGJZaqDbNEND',
+          price: config.priceId,
           quantity: productInfo.quantity,
         },
       ],
       mode: 'payment',
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/shop/${productInfo.id}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/shop`,
       customer_email: customerEmail,
+      metadata: {
+        stripeProductId: productInfo.stripeProductId,
+        productName: productInfo.name,
+        model: productInfo.model || '',
+        size: productInfo.size || '',
+        quantity: productInfo.quantity.toString(),
+      },
     });
 
     if (!session.url) {
       throw new Error('Failed to create checkout session URL');
     }
 
-    redirect(session.url);
+    return session.url;
   } catch (error) {
     console.error('Error creating checkout session:', error);
     throw new Error('Failed to create checkout session');
   }
 }
 
-export async function createQuickCheckoutSession(productId: 'maillot' | 'cahier') {
+export async function createQuickCheckoutSession(stripeProductId: keyof typeof STRIPE_PRODUCT_CONFIGS): Promise<string> {
   try {
-    const config = PRODUCT_CONFIGS[productId];
+    const config = STRIPE_PRODUCT_CONFIGS[stripeProductId];
     
     if (!config) {
-      throw new Error(`Product configuration not found for ${productId}`);
+      throw new Error(`Product configuration not found for Stripe Product ID: ${stripeProductId}`);
     }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
+      currency: 'eur',
       line_items: [
         {
-          price_data: {
-            currency: 'eur',
-            product_data: {
-              name: config.name,
-              description: config.description,
-              images: [
-                productId === 'maillot' 
-                  ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/image-1.png`
-                  : `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/images/child-book.jpg`
-              ],
-            },
-            unit_amount: config.basePrice,
-          },
+          price: config.priceId,
           quantity: 1,
         },
       ],
@@ -99,7 +110,7 @@ export async function createQuickCheckoutSession(productId: 'maillot' | 'cahier'
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/shop`,
       metadata: {
-        productId,
+        stripeProductId,
         productName: config.name,
         quantity: '1',
       },
@@ -109,7 +120,7 @@ export async function createQuickCheckoutSession(productId: 'maillot' | 'cahier'
       throw new Error('Failed to create checkout session URL');
     }
 
-    redirect(session.url);
+    return session.url;
   } catch (error) {
     console.error('Error creating quick checkout session:', error);
     throw new Error('Failed to create checkout session');
