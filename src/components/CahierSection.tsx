@@ -74,7 +74,7 @@ export default function CahierSection() {
                 <p className="text-gray-300 font-semibold text-center text-sm sm:text-base">Un cadeau parfait pour les familles, les écoles du dimanche et les groupes de jeunes.</p>
               </div>
 
-              <Link href="/shop/cahier-moyens" scroll={false}>
+              <Link href="/shop" scroll={false}>
                 <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30">
                   <span className="relative z-10 flex items-center justify-center">Boutique</span>
                 </button>
@@ -87,7 +87,7 @@ export default function CahierSection() {
                 <p className="text-gray-300 font-semibold text-center text-sm sm:text-base">Un cadeau parfait pour les familles, les écoles du dimanche et les groupes de jeunes.</p>
               </div>
 
-              <Link href="/shop/cahier-moyens" scroll={false}>
+              <Link href="/shop" scroll={false}>
                 <button className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full font-semibold text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30 cursor-pointer">
                   <span className="relative z-10 flex items-center justify-center">Boutique</span>
                 </button>
