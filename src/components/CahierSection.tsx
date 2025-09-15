@@ -7,10 +7,10 @@ export default function CahierSection() {
   return (
     <>
       <SEOHead
-        title="Cahier ECODIM - Former la nouvelle génération en s'amusant"
-        description="Le Cahier ECODIM est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, mais centré sur la Bible, il mêle apprentissage et jeux."
+        title="Cahier Magape Kids - Former la nouvelle génération en s'amusant"
+        description="Le Cahier Magape Kids est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, mais centré sur la Bible, il mêle apprentissage et jeux."
         keywords={[
-          "cahier ECODIM",
+          "cahier Magape Kids",
           "éducation chrétienne",
           "livre enfants chrétiens",
           "activités bibliques",
@@ -44,9 +44,9 @@ export default function CahierSection() {
                 <span className="text-yellow-400 text-xs sm:text-sm font-medium">POUR LES ENFANTS</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">Cahier ECODIM</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">Cahier Magape Kids</h2>
               <p className="text-lg sm:text-xl text-gray-300 mb-3 sm:mb-4">Former la nouvelle génération… en s'amusant.</p>
-              <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8 leading-relaxed">Le Cahier ECODIM est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, <strong className="text-yellow-400">mais centré sur la Bible</strong>, il mêle apprentissage et jeux pour que les enfants grandissent dans la foi <strong className="text-orange-400">avec joie</strong>.</p>
+              <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8 leading-relaxed">Le Cahier Magape Kids est notre outil pour transmettre les valeurs chrétiennes dès le plus jeune âge. Comme un cahier de vacances, <strong className="text-yellow-400">mais centré sur la Bible</strong>, il mêle apprentissage et jeux pour que les enfants grandissent dans la foi <strong className="text-orange-400">avec joie</strong>.</p>
             </div>
 
             {/* Image - After description on mobile, order-1 on desktop */}
@@ -58,7 +58,7 @@ export default function CahierSection() {
                 <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
                   <Image
                     src="/images/book_model_2.png"
-                    alt="Cahier ECODIM"
+                    alt="Cahier Magape Kids"
                     width={500}
                     height={600}
                     className="object-cover w-full h-[350px] sm:h-[400px] md:h-[500px] transition-transform duration-500 group-hover:scale-105"
