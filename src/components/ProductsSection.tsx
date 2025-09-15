@@ -115,7 +115,7 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-gray-400 text-xs sm:text-sm">Mouvement d'Agapè, symbole d'amour inconditionnel et d'unité chrétienne</p>
+              <p className="text-gray-400 text-xs sm:text-sm">Notre symbole d’unité</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
@@ -127,7 +127,7 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-gray-400 text-xs sm:text-sm">Reconnaissance de la souveraineté du Christ sur toutes choses</p>
+              <p className="text-gray-400 text-xs sm:text-sm">Le reflet de notre identité</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
@@ -139,7 +139,7 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-gray-400 text-xs sm:text-sm">Proclamation de la royauté éternelle du Christ sur l'univers entier</p>
+              <p className="text-gray-400 text-xs sm:text-sm">Notre champs de mission; la francophonie</p>
             </div>
           </div>
 
