@@ -50,7 +50,7 @@ export default function MediaSectionMobile() {
       id: 3,
       title: "Débats",
       subtitle: "Pour créer du lien",
-      description: "Des débats équilibrés et respectueux qui explorent les grands enjeux contemporains. Un espace de dialogue pour grandir ensemble dans la foi.",
+      description: "Une série documentaire sur la vision de l’église selon son fondateur et l’impact dans notre société",
       icon: Play,
       color: "#ff6b35",
       gradient: "from-[#ff6b35]/20 to-[#ff6b35]/10",
@@ -72,7 +72,7 @@ export default function MediaSectionMobile() {
       id: 5,
       title: "Francophonie Connectée",
       subtitle: "Pour dépasser les frontières",
-      description: "Une francophonie connectée qui unit les chrétiens du monde entier. Découvrez la richesse de notre diversité culturelle dans l'unité.",
+      description: "Découvrez l’histoire de ceux qui l’ont rencontré",
       icon: AudioLines,
       color: "#a855f7",
       gradient: "from-[#a855f7]/20 to-[#a855f7]/10",
@@ -83,7 +83,7 @@ export default function MediaSectionMobile() {
       id: 6,
       title: "Culture Commune",
       subtitle: "Pour dépasser les frontières",
-      description: "Nous construisons ensemble une culture commune pour les chrétiens francophones. Des voix qui rassemblent, des histoires qui inspirent.",
+      description: "Une série documentaire sur l’institution du mariage et comment vivre chaque étape selon Dieu",
       icon: Headphones,
       color: "#f59e0b",
       gradient: "from-[#f59e0b]/20 to-[#f59e0b]/10",
@@ -430,9 +430,9 @@ export default function MediaSectionMobile() {
                     {/* Button */}
                     <div className="flex justify-center pt-4">
                       <ParticipationForm productTitle={product.title} productColor={product.color}>
-                        <button 
+                        <button
                           className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300"
-                          style={{ 
+                          style={{
                             backgroundColor: product.color,
                             boxShadow: `0 10px 30px ${product.color}20`
                           }}

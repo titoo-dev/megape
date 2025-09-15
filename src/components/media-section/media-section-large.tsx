@@ -99,7 +99,7 @@ export default function MediaSectionLarge() {
         ScrollTrigger.refresh();
       }
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -112,8 +112,8 @@ export default function MediaSectionLarge() {
     const textContent = textContentRef.current;
 
     // Check for reduced motion preference
-    const prefersReduced = typeof window !== 'undefined' && 
-      window.matchMedia && 
+    const prefersReduced = typeof window !== 'undefined' &&
+      window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
@@ -162,40 +162,40 @@ export default function MediaSectionLarge() {
       duration: 0.8,
       ease: "back.out(1.7)"
     })
-    .to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.5")
-    .to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.6")
-    .to(descriptionRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.4");
+      .to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=0.5")
+      .to(subtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.6")
+      .to(descriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.4");
 
     // Set initial card positions to prevent jumping
     mediaProducts.forEach((_, index) => {
       const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
       if (card) {
-        gsap.set(card, { 
+        gsap.set(card, {
           opacity: 0,
           z: index,
           transformOrigin: "center center"
         });
-        
+
         // Ensure proper initial positioning
         const cardMain = card.querySelector('div[class*="h-[600px]"]') as HTMLElement;
         if (cardMain) {
-          gsap.set(cardMain, { 
-            scale: 0.9, 
+          gsap.set(cardMain, {
+            scale: 0.9,
             y: 30,
             transformOrigin: "center center"
           });
@@ -219,7 +219,7 @@ export default function MediaSectionLarge() {
     mediaProducts.forEach((product, index) => {
       const card = cards.querySelector(`[data-card="${index}"]`) as HTMLElement;
       const textBlock = textContent.querySelector(`[data-text="${index}"]`) as HTMLElement;
-      
+
       if (card && textBlock) {
         // Get card main element
         const cardMain = card.querySelector('div[class*="h-[600px]"]') as HTMLElement;
@@ -227,7 +227,7 @@ export default function MediaSectionLarge() {
 
         // Set text block initial state
         gsap.set(textBlock, { opacity: 0, x: -50 });
-        
+
         // Image initial state
         if (imageElement) gsap.set(imageElement, { scale: 1.1 });
 
@@ -240,7 +240,7 @@ export default function MediaSectionLarge() {
             scrub: 2,
             onUpdate: (self) => {
               const progress = self.progress;
-              
+
               // Only show current card
               if (progress > 0.1 && progress < 0.9) {
                 gsap.set(card, { zIndex: 100 + index });
@@ -257,18 +257,18 @@ export default function MediaSectionLarge() {
           duration: 0.4,
           ease: "power2.out"
         }, 0)
-        .to(cardMain, {
-          scale: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "back.out(1.2)"
-        }, 0.1)
-        .to(textBlock, {
-          opacity: 1,
-          x: 0,
-          duration: 0.4,
-          ease: "power2.out"
-        }, 0.1);
+          .to(cardMain, {
+            scale: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "back.out(1.2)"
+          }, 0.1)
+          .to(textBlock, {
+            opacity: 1,
+            x: 0,
+            duration: 0.4,
+            ease: "power2.out"
+          }, 0.1);
 
         // Image animation
         if (imageElement) {
@@ -286,35 +286,35 @@ export default function MediaSectionLarge() {
             duration: 0.4,
             ease: "power2.in"
           }, 0.7)
-          .to(cardMain, {
-            scale: 0.95,
-            y: -20,
-            duration: 0.4,
-            ease: "power2.in"
-          }, 0.7)
-          .to(textBlock, {
-            opacity: 0.2,
-            x: 30,
-            duration: 0.3,
-            ease: "power2.in"
-          }, 0.8);
+            .to(cardMain, {
+              scale: 0.95,
+              y: -20,
+              duration: 0.4,
+              ease: "power2.in"
+            }, 0.7)
+            .to(textBlock, {
+              opacity: 0.2,
+              x: 30,
+              duration: 0.3,
+              ease: "power2.in"
+            }, 0.8);
         } else {
           // Last card stays visible
           tl.to(card, {
             opacity: 1,
             duration: 0.2
           }, 0.7)
-          .to(textBlock, {
-            opacity: 1,
-            duration: 0.2
-          }, 0.8);
+            .to(textBlock, {
+              opacity: 1,
+              duration: 0.2
+            }, 0.8);
         }
       }
     });
 
     // Final quote animation
     gsap.set(finalQuoteRef.current, { opacity: 0, y: 50, scale: 0.9 });
-    
+
     ScrollTrigger.create({
       trigger: finalQuoteRef.current,
       start: "top 80%",
@@ -353,9 +353,9 @@ export default function MediaSectionLarge() {
   }, { scope: sectionRef });
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="media" 
+    <section
+      ref={sectionRef}
+      id="media"
       className="relative bg-gray-900 overflow-hidden"
     >
       {/* Background Effects */}
@@ -380,11 +380,11 @@ export default function MediaSectionLarge() {
       <div ref={containerRef} className="relative" style={{ height: `${(mediaProducts.length + 1) * 100}vh` }}>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start">
-            
+
             {/* Left Side - Text Content */}
             <div ref={textContentRef} className="space-y-24 sm:space-y-32">
               {mediaProducts.map((product, index) => (
-                <div 
+                <div
                   key={product.id}
                   data-text={index}
                   className="opacity-0 min-h-screen flex items-center"
@@ -396,20 +396,20 @@ export default function MediaSectionLarge() {
                         {product.subtitle.toUpperCase()}
                       </span>
                     </div>
-                    
+
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                       {product.title}
                     </h3>
-                    
+
                     <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                       {product.description}
                     </p>
-                    
+
                     <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                       <ParticipationForm productTitle={product.title} productColor={product.color}>
-                        <button 
+                        <button
                           className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105"
-                          style={{ 
+                          style={{
                             backgroundColor: product.color,
                             boxShadow: `0 10px 30px ${product.color}20`
                           }}
@@ -421,7 +421,7 @@ export default function MediaSectionLarge() {
                   </div>
                 </div>
               ))}
-              
+
               {/* Final Quote */}
               <div ref={finalQuoteRef} className="text-center py-24 sm:py-32 min-h-screen flex items-center justify-center">
                 <div className="relative inline-block max-w-2xl mx-auto px-4">
@@ -457,7 +457,7 @@ export default function MediaSectionLarge() {
                 ))}
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
