@@ -107,7 +107,7 @@ export default function ProductsSection() {
           {/* Features Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-3 sm:mb-4 relative">
+              <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-56 lg:h-56 mx-auto mb-3 sm:mb-4 relative">
                 <Image
                   src="/magape_bg_removed.png"
                   alt="Logo MAGAPE"
@@ -115,12 +115,11 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">MAGAPE</h4>
               <p className="text-gray-400 text-xs sm:text-sm">Mouvement d'Agapè, symbole d'amour inconditionnel et d'unité chrétienne</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-3 sm:mb-4 relative">
+              <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-56 lg:h-56 mx-auto mb-3 sm:mb-4 relative">
                 <Image
                   src="/images/logo_2.png"
                   alt="Logo Christ Roi des Rois"
@@ -128,12 +127,11 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Christ Roi des Rois</h4>
               <p className="text-gray-400 text-xs sm:text-sm">Reconnaissance de la souveraineté du Christ sur toutes choses</p>
             </div>
 
             <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-lg sm:rounded-xl border border-gray-700 hover:border-gray-600 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-3 sm:mb-4 relative">
+              <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-56 lg:h-56 mx-auto mb-3 sm:mb-4 relative">
                 <Image
                   src="/images/logo_3.png"
                   alt="Logo Roi des Rois Christ"
@@ -141,7 +139,6 @@ export default function ProductsSection() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Seigneur des Seigneurs</h4>
               <p className="text-gray-400 text-xs sm:text-sm">Proclamation de la royauté éternelle du Christ sur l'univers entier</p>
             </div>
           </div>
