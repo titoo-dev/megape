@@ -5,7 +5,6 @@ export default function MissionSection() {
     <section id="mission" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">Vision & Univers graphique</h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 px-2">Une mission claire. Un langage commun. Une famille unie.</p>
         </div>
 
