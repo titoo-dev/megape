@@ -4,7 +4,6 @@ import EnBrefSection from '@/components/EnBrefSection';
 import ProductsSection from '@/components/ProductsSection';
 import MediaSection from '@/components/MediaSection';
 import CahierSection from '@/components/CahierSection';
-import ContactSection from '@/components/ContactSection';
 import HeroServer from '@/components/HeroSever';
 import FloatingActionButtonServer from '@/components/FloatingActionButtonServer';
 import SEOHead, { structuredData } from '@/components/SEOHead';
