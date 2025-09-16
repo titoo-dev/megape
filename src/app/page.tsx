@@ -47,7 +47,7 @@ export default function Home() {
       <ProductsSection />
       <MediaSection />
       <CahierSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
       {/* <StatsSection /> */}
       <FloatingActionButtonServer />
     </>
